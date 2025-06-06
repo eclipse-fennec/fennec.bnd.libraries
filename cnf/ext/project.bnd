@@ -1,28 +1,27 @@
-Bundle-DocURL: https://github.com/geckoprojects-org/${github-project}
-Bundle-SCM: url=https://github.com/geckoprojects-org/${github-project}, \
-	connection=scm:git:https://github.com/geckoprojects-org/${github-project}.git, \
-	developerConnection=scm:git:git@github.com:geckoprojects-org/${github-project}.git
+Bundle-DocURL: https://github.com/eclipse-fennec/fennec.bnd.libraries
+Bundle-SCM: url=https://github.com/eclipse-fennec/fennec.bnd.libraries, \
+	connection=scm:git:https://github.com/eclipse-fennec/fennec.bnd.libraries.git, \
+	developerConnection=scm:git:git@github.com:eclipse-fennec/fennec.bnd.libraries.git
 Bundle-Version: ${base-version}
 Bundle-License: Eclipse Public License 2.0
-Bundle-Copyright: Data In Motion Consuling GmbH - All rights reserved
-Bundle-Vendor: Data In Motion Consuling GmbH
-Bundle-ContactAddress: info@data-in-motion.biz
+Bundle-Copyright: Eclipse Foundation - All rights reserved
+Bundle-Vendor: Eclipse Foundation
+Bundle-ContactAddress: info@datainmotion.com
 Bundle-Developers: \
     sbischof; \
         email="stbischof@bipolis.org"; \
         name="Stefan Bischof"; \
         roles="developer", \
     jalbert; \
-        email="j.albert@data-in-motion.biz"; \
+        email="j.albert@datainmotion.com"; \
         name="Juergen Albert"; \
         organization="Data In Motion"; \
-        organizationUrl="https://www.datainmotion.de"; \
+        organizationUrl="https://www.datainmotion.com"; \
         roles="architect,developer", \
     mhoffmann; \
         name="Mark Hoffmann"; \
-        email="m.hoffmann@data-in-motion.biz"; \
-        url="https://www.datainmotion.de"; \
+        email="m.hoffmann@datainmotion.com"; \
         organization="Data In Motion"; \
-        organizationUrl="https://www.datainmotion.de"; \
+        organizationUrl="https://www.datainmotion.com"; \
         roles="developer,architect"
 	
