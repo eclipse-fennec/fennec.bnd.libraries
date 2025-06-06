@@ -48,7 +48,7 @@ releaseNotNeeded: ${findproviders;osgi.identity;(&(osgi.identity=${bsn})(version
 
 -connections-settings: \
 	central;\
-		id="oss.sonatype.org";\
+		id="https://oss.sonatype.org";\
 		username=${env;OSSRH_USERNAME};\
 		password=${env;OSSRH_PASSWORD}
 		
