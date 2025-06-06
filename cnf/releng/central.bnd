@@ -5,7 +5,7 @@
 		index			= ${.}/sonatype.maven;\
 		name			= 'Sonatype'
 
--releaserepo.sonatype: Sonatype
+-releaserepo: Sonatype
 #We have to substitude the -SNAPSHOT with an empty String for releases
 
 -maven-release: pom,\
