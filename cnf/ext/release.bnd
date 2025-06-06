@@ -13,6 +13,6 @@
 		${workspace}/cnf/releng/release.bnd;\
 		${workspace}/cnf/releng/snapshot.bnd\
 	},\
-	${if;${env;GNUPG_PASSPHRASE};\
+	${if;${env;GPG_PASSPHRASE};\
 		${workspace}/cnf/releng/central.bnd\
 	}			
