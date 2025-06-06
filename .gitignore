@@ -1,0 +1,11 @@
+.DS_Store
+.gradle/
+/generated/
+.metadata
+/build/
+/release/
+/local/
+/cnf/cache/
+/build/
+generated/
+bin/

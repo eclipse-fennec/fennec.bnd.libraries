@@ -1,0 +1,15 @@
+-resourceonly: true
+-sources: false
+
+-includeresource: resources
+
+Provide-Capability: \
+	${fennec-base}
+
+fennec-base:\
+    bnd.library;\
+        bnd.library     = fennecJacoco; \
+        path            = library
+        
+Bundle-Name: Bnd library for Jacoco
+Bundle-Description: Eclipse Fennec Jacoco support as bndtools library

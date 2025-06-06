@@ -1,0 +1,10 @@
+Test-Cases: ${classes;HIERARCHY_INDIRECTLY_ANNOTATED;org.junit.platform.commons.annotation.Testable;CONCRETE}
+
+-buildpath.junit5: ${test-path}
+
+test-path: \
+	${junit},\
+	${mockito},\
+	${osgitest}
+	
+-require-bnd: "(version>=7.0.0)"
