@@ -1,3 +1,8 @@
 #We have to substitude the -SNAPSHOT with an empty String for releases
 -snapshot: 
 mvn-base-version: ${versionmask;===;${base-version}}
+
+-maven-release: pom,\
+	sign;passphrase=${env;GPG_PASSPHRASE}
+gpg-dir: 
+gpg: gpg --homedir /var/jenkins_home/.gnupg --pinentry-mode loopback
