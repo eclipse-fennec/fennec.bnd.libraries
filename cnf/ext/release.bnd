@@ -12,7 +12,4 @@
 	${if;${def;release.dir};\
 		${workspace}/cnf/releng/release.bnd;\
 		${workspace}/cnf/releng/snapshot.bnd\
-	},\
-	${if;${env;GPG_PASSPHRASE};\
-		${workspace}/cnf/releng/central.bnd\
-	}			
+	}	
