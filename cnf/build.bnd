@@ -42,8 +42,7 @@ osgi-test-category: ccc/OSGi-Test & JUnit5 Jupiter
 
 #-connection-settings: ~/foo/settings.xml, bnd
 -connection-settings: \
-	central.sonatype.com;\
-		id="https://central.sonatype.com";\
-		username=${env;CS_USERNAME};\
-		password=${env;CS_PASSWORD}
+	id="https://central.sonatype.com";\
+	username=${env;CS_USERNAME};\
+	password=${env;CS_PASSWORD}
 		
