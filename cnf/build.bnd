@@ -40,10 +40,9 @@ github-project: fennec.bnd.libraries
 category: ccc/Eclipse Fennec Bndtools Standard Templates
 osgi-test-category: ccc/OSGi-Test & JUnit5 Jupiter
 
-ossrh: ${substring;${env;OSSRHU};2}
 -connections-settings: \
 	github;\
 		id="https://central.sonatype.com";\
-		username=${env;OSSRH_USERNAME};\
-		password=${env;OSSRH_PASSWORD}
+		username=${env;CS_USERNAME};\
+		password=${env;CS_PASSWORD}
 		
