@@ -32,8 +32,8 @@ jobs:
     name: JDK${{ matrix.java }} ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     env:
-      OSSRH_PASSWORD: ${{secret.OSSRH_PASSWORD}}
-      OSSRH_USERNAME: ${{secret.OSSRH_USERNAME}}
+      OSSRH_PASSWORD: ${{secrets.OSSRH_PASSWORD}}
+      OSSRH_USERNAME: ${{secrets.OSSRH_USERNAME}}
     steps:
     - name: Git Checkout
       uses: actions/checkout@v4
