@@ -50,4 +50,4 @@ jobs:
     - name: Gradle version
       run: ./gradlew --no-daemon --version
     - name: Build with Gradle
-      run: ./gradlew release --debug
+      run: ./gradlew bndproperties
