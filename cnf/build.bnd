@@ -40,12 +40,7 @@ github-project: fennec.bnd.libraries
 category: ccc/Eclipse Fennec Bndtools Standard Templates
 osgi-test-category: ccc/OSGi-Test & JUnit5 Jupiter
 
-# Find out if the current Bundle Version is already deployed in any repository (excluding the Workspace)
-releaseNotNeeded: ${findproviders;osgi.identity;(&(osgi.identity=${bsn})(version=${Bundle-Version}));REPOS}
-
-# If release not needed is empty, no Bundle has been found and for maven we do a release to the remote Repo. If not, we only do a release to the local .m2 Repo
--maven-release.local: ${if;${def;releaseNotNeeded};local;remote}
-ossrh: ${env;OSSRH_USERNAME}
+ossrh: ${env;OSSRHU}
 -connections-settings: \
 	github;\
 		id="https://central.sonatype.com";\
