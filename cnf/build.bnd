@@ -3,7 +3,7 @@ javac.target: 17
 
 -plugin.1.Sonatype: \
 	aQute.bnd.repository.maven.provider.MavenBndRepository;\
-		snapshotUrl		= https://oss.sonatype.org/content/repositories/snapshots/;\
+		snapshotUrl		= https://central.sonatype.com/repository/maven-snapshots/;\
 		releaseUrl		= https://oss.sonatype.org/service/local/staging/deploy/maven2/;\
 		index			= ${.}/sonatype.maven;\
 		name			= 'Sonatype'
@@ -48,7 +48,7 @@ releaseNotNeeded: ${findproviders;osgi.identity;(&(osgi.identity=${bsn})(version
 
 -connections-settings: \
 	github;\
-		id="https://oss.sonatype.org";\
-		username=${env;OSSRH_USERNAME};\
-		password=${env;OSSRH_PASSWORD}
+		id="https://central.sonatype.com";\
+		username=${env;secrets.OSSRH_USERNAME};\
+		password=${env;secrets.OSSRH_PASSWORD}
 		
