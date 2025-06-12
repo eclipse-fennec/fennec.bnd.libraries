@@ -25,3 +25,9 @@ Bundle-Developers: \
         organizationUrl="https://www.datainmotion.com"; \
         roles="developer,architect"
 	
+# Includes sources from bundle
+-sources: true
+
+# Package the license file
+-includeresource.license: \
+	META-INF/LICENSE=${workspace}/cnf/license/LICENSE
