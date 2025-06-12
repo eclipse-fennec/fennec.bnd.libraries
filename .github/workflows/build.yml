@@ -32,6 +32,7 @@ jobs:
     name: JDK${{ matrix.java }} ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     env:
+      CI: Github
       CS_PASSWORD: ${{secrets.CENTRAL_SONATYPE_TOKEN_PASSWORD}}
       CS_USERNAME: ${{secrets.CENTRAL_SONATYPE_TOKEN_USERNAME}}
       GPG_PASSPHRASE: ${{secrets.GPG_PASSPHRASE}}

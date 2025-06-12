@@ -51,9 +51,7 @@ category: ccc/Eclipse Fennec Bndtools Standard Templates
 osgi-test-category: ccc/OSGi-Test & JUnit5 Jupiter
 
 # Inline connection settings
+
 -connection-settings: \
-	server;\
-		id="https://central.sonatype.com";\
-		username=${env;CS_USERNAME};\
-		password=${env;CS_PASSWORD}
+	${if;${env;CI};${.}/ext/sonatype-settings.xml;false}
 		
