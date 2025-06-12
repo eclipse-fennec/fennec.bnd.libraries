@@ -1,3 +1,5 @@
+releng: ${workspace}/cnf/releng
+
 # Sonatype Central für SNAPSHOT and release publishing
 -plugin.3.Sonatype: \
 	aQute.bnd.repository.maven.provider.MavenBndRepository;\
@@ -12,7 +14,7 @@
 
 # Connection settings
 -connection-settings: \
-	${if;${env;CI};${workspace}/releng/sonatype-settings.xml;false}
+	${if;${env;CI};${releng}/sonatype-settings.xml;false}
 
 # Make a maven release
 #-maven-release: pom 
@@ -29,6 +31,6 @@ gpg: gpg --default-key ${env.GPG_KEY_ID} --pinentry-mode loopback
 # Decide for snapshot or release
 -include: \
 	${if;${def;release.dir};\
-		${workspace}/cnf/releng/release.bnd;\
-		${workspace}/cnf/releng/snapshot.bnd\
+		${releng}/release.bnd;\
+		${releng}/snapshot.bnd\
 	}	
