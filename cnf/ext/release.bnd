@@ -1,5 +1,28 @@
-# Make a mave nrelease
--maven-release: pom
+# Sonatype Central für SNAPSHOT and release publishing
+-plugin.3.Sonatype: \
+	aQute.bnd.repository.maven.provider.MavenBndRepository;\
+		snapshotUrl		= https://central.sonatype.com/repository/maven-snapshots/;\
+		releaseUrl		= https://central.sonatype.com/;\
+		index			= ${.}/sonatype.maven;\
+		name			= 'Sonatype'
+
+# Set release repository
+-releaserepo: Local
+#-releaserepo: Sonatype
+
+# Connection settings
+-connection-settings: \
+	${if;${env;CI};${.}/ext/sonatype-settings.xml;false}
+
+# Make a maven release
+#-maven-release: pom 
+
+# Release and sign Jars für Sonatype / Central release
+-maven-release: pom,\
+	sign;passphrase=${env;GPG_PASSPHRASE}
+#gpg-dir: 
+gpg: gpg --default-key ${env.GPG_KEY_ID} --pinentry-mode loopback
+
 -pom: true
 -digest: sha256
 
