@@ -1,0 +1,9 @@
+# We have to substitude the -SNAPSHOT with an empty String for releases
+-snapshot: 
+mvn-base-version: ${versionmask;===;${base-version}}
+
+# Release and sign Jars für Sonatype / Central release
+-maven-release: pom,\
+	sign;passphrase=${env;GPG_PASSPHRASE}
+#gpg-dir: 
+gpg: gpg --default-key ${env.GPG_KEY_ID} --pinentry-mode loopback

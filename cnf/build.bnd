@@ -1,0 +1,41 @@
+
+# Set projects group id
+-groupid: org.eclipse.fennec.bnd
+
+# Set projects current version
+base-version: 0.0.1.SNAPSHOT
+
+# Set projects Github repository name
+github-project: fennec.bnd.libraries
+
+# Set Java version
+javac.source: 17
+javac.target: 17
+
+# Local repository content will checked in
+-plugin.0.Local: \
+	aQute.bnd.deployer.repository.LocalIndexedRepo; \
+		name = Local; \
+		pretty = true; \
+		local = ${build}/local
+# Temporary repository that will not be checked in		
+-plugin.1.Temp: \
+	aQute.bnd.deployer.repository.LocalIndexedRepo; \
+		name = Temp; \
+		pretty = true; \
+		local = ${build}/cache/temp
+		
+# Maven Central	readonly
+-plugin.2.Central: \
+	aQute.bnd.repository.maven.provider.MavenBndRepository; \
+        	snapshotUrl=https://central.sonatype.com/repository/maven-snapshots/; \
+		releaseUrl=https://central.sonatype.com/; \
+		index=${.}/central.maven; \
+		readOnly=true; \
+		poll.time=-1; \
+		name="Central"
+		
+# Set category variables for project template categories
+category: ccc/Eclipse Fennec Bndtools Standard Templates
+osgi-test-category: ccc/OSGi-Test & JUnit5 Jupiter
+		
