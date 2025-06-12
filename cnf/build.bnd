@@ -35,23 +35,7 @@ javac.target: 17
 		poll.time=-1; \
 		name="Central"
 		
-# Sonatype Central für SNAPSHOT and release publishing
--plugin.3.Sonatype: \
-	aQute.bnd.repository.maven.provider.MavenBndRepository;\
-		snapshotUrl		= https://central.sonatype.com/repository/maven-snapshots/;\
-		releaseUrl		= https://central.sonatype.com/;\
-		index			= ${.}/sonatype.maven;\
-		name			= 'Sonatype'
-
-# Set release repository
--releaserepo: Sonatype
-
 # Set category variables for project template categories
 category: ccc/Eclipse Fennec Bndtools Standard Templates
 osgi-test-category: ccc/OSGi-Test & JUnit5 Jupiter
-
-# Inline connection settings
-
--connection-settings: \
-	${if;${env;CI};${.}/ext/sonatype-settings.xml;false}
 		

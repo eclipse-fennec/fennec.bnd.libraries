@@ -53,4 +53,4 @@ jobs:
     - name: Gradle version
       run: ./gradlew --no-daemon --version
     - name: Build with Gradle
-      run: ./gradlew release --info
+      run: ./gradlew release --debug
