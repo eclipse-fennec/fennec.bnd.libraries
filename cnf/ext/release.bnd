@@ -12,7 +12,7 @@
 
 # Connection settings
 -connection-settings: \
-	${if;${env;CI};${.}/ext/sonatype-settings.xml;false}
+	${if;${env;CI};${workspace}/releng/sonatype-settings.xml;false}
 
 # Make a maven release
 #-maven-release: pom 
