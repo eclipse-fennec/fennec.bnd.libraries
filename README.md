@@ -1,3 +1,5 @@
+[![CI Build](https://github.com/eclipse-fennec/fennec.bnd.libraries/actions/workflows/build.yml/badge.svg)](https://github.com/eclipse-fennec/fennec.bnd.libraries/actions/workflows/build.yml)
+
 # Fennec Bnd Libraries
 
 This project contains **Bndtools Library** definitions..
