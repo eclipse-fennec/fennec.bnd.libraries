@@ -1,13 +1,9 @@
-# Includes sources from bundle
--sources: true
-
--includeresource.license: \
-	META-INF/LICENSE=${workspace}/cnf/license/LICENSE
-
+# Make a mave nrelease
 -maven-release: pom
 -pom: true
 -digest: sha256
 
+# Decide for snapshot or release
 -include: \
 	${if;${def;release.dir};\
 		${workspace}/cnf/releng/release.bnd;\

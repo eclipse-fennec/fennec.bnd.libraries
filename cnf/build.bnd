@@ -1,46 +1,56 @@
+
+# Set projects group id
+-groupid: org.eclipse.fennec.bnd
+
+# Set projects current version
+base-version: 0.0.1.SNAPSHOT
+
+# Set projects Github repository name
+github-project: fennec.bnd.libraries
+
+# Set Java version
 javac.source: 17
 javac.target: 17
 
--plugin.1.Sonatype: \
-	aQute.bnd.repository.maven.provider.MavenBndRepository;\
-		snapshotUrl		= https://central.sonatype.com/repository/maven-snapshots/;\
-		releaseUrl		= https://oss.sonatype.org/service/local/staging/deploy/maven2/;\
-		index			= ${.}/sonatype.maven;\
-		name			= 'Sonatype'
-
--releaserepo: Sonatype
-
--plugin.3.Central: \
-    aQute.bnd.repository.maven.provider.MavenBndRepository; \
-        snapshotUrl=https://oss.sonatype.org/content/repositories/snapshots/; \
-        releaseUrl=https://repo1.maven.apache.org/maven2/; \
-        index=${.}/central.maven; \
-        readOnly=true; \
-        poll.time=-1; \
-        name="Central"
-
+# Local repository content will checked in
 -plugin.0.Local: \
 	aQute.bnd.deployer.repository.LocalIndexedRepo; \
 		name = Local; \
 		pretty = true; \
 		local = ${build}/local
-		
+# Temporary repository that will not be checked in		
 -plugin.1.Temp: \
 	aQute.bnd.deployer.repository.LocalIndexedRepo; \
 		name = Temp; \
 		pretty = true; \
 		local = ${build}/cache/temp
-        
--groupid: org.eclipse.fennec.bnd
+		
+# Maven Central	readonly
+-plugin.2.Central: \
+	aQute.bnd.repository.maven.provider.MavenBndRepository; \
+        	snapshotUrl=https://central.sonatype.com/repository/maven-snapshots/; \
+		releaseUrl=https://central.sonatype.com/; \
+		index=${.}/central.maven; \
+		readOnly=true; \
+		poll.time=-1; \
+		name="Central"
+		
+# Sonatype Central für SNAPSHOT and release publishing
+-plugin.3.Sonatype: \
+	aQute.bnd.repository.maven.provider.MavenBndRepository;\
+		snapshotUrl		= https://central.sonatype.com/repository/maven-snapshots/;\
+		releaseUrl		= https://central.sonatype.com/;\
+		index			= ${.}/sonatype.maven;\
+		name			= 'Sonatype'
 
-base-version: 0.0.1.SNAPSHOT
+# Set release repository
+-releaserepo: Sonatype
 
-github-project: fennec.bnd.libraries
-
+# Set category variables for project template categories
 category: ccc/Eclipse Fennec Bndtools Standard Templates
 osgi-test-category: ccc/OSGi-Test & JUnit5 Jupiter
 
-#-connection-settings: ~/foo/settings.xml, bnd
+# Inline connection settings
 -connection-settings: \
 	server;\
 		id="https://central.sonatype.com";\

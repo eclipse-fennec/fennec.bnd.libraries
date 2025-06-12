@@ -30,4 +30,3 @@ icondata: data:image/gif;base64,${base64;icons/fennec.ico}
 Bundle-Name: Bnd library for an Eclipse Fennec setup
 Bundle-Description: Eclipse Fennec workspace and project support as bndtools Library
 
--releaserepo: Release, Release-Workspace

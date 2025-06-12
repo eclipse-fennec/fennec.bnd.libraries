@@ -34,6 +34,8 @@ jobs:
     env:
       CS_PASSWORD: ${{secrets.CENTRAL_SONATYPE_TOKEN_PASSWORD}}
       CS_USERNAME: ${{secrets.CENTRAL_SONATYPE_TOKEN_USERNAME}}
+      GPG_PASSPHRASE: ${{secrets.GPG_PASSPHRASE}}
+      GPG_KEY_ID: ${{secrets.GPG_KEY_ID}}
     steps:
     - name: Git Checkout
       uses: actions/checkout@v4
