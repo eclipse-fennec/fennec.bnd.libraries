@@ -63,7 +63,7 @@ jobs:
       run: |
         # Stelle sicher, dass GPG verfügbar ist
         sudo apt-get update && sudo apt-get install -y gnupg2
-        echo "$GPG_PRIVATE_KEY_ASCII_ARMORED" > private.key
+        echo "$GPG_PRIVATE_KEY" > private.key
         echo "$GPG_PASSPHRASE" | gpg --batch --passphrase-fd 0 --pinentry-mode loopback --no-tty --quiet --yes --import private.key
         rm private.key
       shell: bash 
