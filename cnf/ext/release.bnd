@@ -6,14 +6,8 @@
 		index			= ${.}/sonatype.maven;\
 		name			= 'Sonatype'
 
--plugin.local = \
-	aQute.bnd.repository.maven.provider.MavenBndRepository; \
-		index=${.}/local.maven; \
-		name="M2Local"
-		
 # Set release repository
--releaserepo: M2Local
-#-releaserepo: Sonatype
+-releaserepo: Sonatype
 
 # Connection settings
 -connection-settings: \
@@ -24,10 +18,10 @@
 
 # Release and sign Jars für Sonatype / Central release
 -maven-release: pom,\
-	sign;passphrase=blub
+	sign;passphrase=${env.GPG_PASSPHRASE}
 
 #gpg-dir: 
-gpg: gpg --default-key ${env.GPG_KEY_ID} --pinentry-mode loopback
+gpg: gpg --local-user ${env.GPG_KEY_ID} --pinentry-mode loopback
 
 -pom: true
 -digest: sha256
