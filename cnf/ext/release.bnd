@@ -14,11 +14,9 @@
 	${if;${env;CI};${workspace}/cnf/releng/sonatype-settings.xml;false}
 
 # Make a maven release
-#-maven-release: pom
-
 # Release and sign Jars für Sonatype / Central release
 -maven-release: pom,\
-	sign;passphrase=${env.GPG_PASSPHRASE}
+	sign;passphrase=${env;GNUPG_PASSPHRASE}
 
 #gpg-dir: 
 gpg: gpg --local-user ${env.GPG_KEY_ID} --pinentry-mode loopback
