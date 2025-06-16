@@ -16,7 +16,7 @@
 # Make a maven release
 # Release and sign Jars für Sonatype / Central release
 -maven-release: pom,\
-	sign;passphrase=${env;GPG_PASSPHRASE}
+	sign;passphrase='${env;GPG_PASSPHRASE}'
 
 #gpg-dir: 
 gpg: gpg --local-user ${env.GPG_KEY_ID} --pinentry-mode loopback
