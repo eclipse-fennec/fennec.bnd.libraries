@@ -1,23 +1,13 @@
 name: CI Build
 on:
   push:
-    branches:
-      - snapshot
+    branches-ignore:
       - main
-    paths-ignore:
-    - 'docs/**'
-    - '.github/**/*docs*'
-    - '.github/**/*codeql*'
-    - '.github/*.yml'
+      - snapshot
   pull_request:
-    branches:
-      - snapshot
+    branches-ignore:
       - main
-    paths-ignore:
-    - 'docs/**'
-    - '.github/**/*docs*'
-    - '.github/**/*codeql*'
-    - '.github/*.yml'
+      - snapshot
 
 env:
   LC_ALL: en_US.UTF-8
@@ -29,21 +19,8 @@ defaults:
     shell: bash
 
 jobs:
-  Build_Matrix:
-    strategy:
-      matrix:
-        os: [ ubuntu-latest ]
-        java: [ 21 ]
-        runner: [ 'xvfb-run --auto-servernum {0}' ]
-    name: JDK${{ matrix.java }} ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
-    env:
-      CI: Github
-      CS_PASSWORD: ${{secrets.CENTRAL_SONATYPE_TOKEN_PASSWORD}}
-      CS_USERNAME: ${{secrets.CENTRAL_SONATYPE_TOKEN_USERNAME}}
-      GPG_PASSPHRASE: ${{secrets.GPG_PASSPHRASE}}
-      GPG_KEY_ID: ${{secrets.GPG_KEY_ID}}
-      GPG_PRIVATE_KEY: ${{secrets.GPG_PRIVATE_KEY}}
+  build:
+    runs-on: ubuntu-latest
     steps:
     - name: Git Checkout
       uses: actions/checkout@v4
@@ -59,17 +36,5 @@ jobs:
       run: chmod +x ./gradlew
     - name: Gradle version
       run: ./gradlew --no-daemon --version
-    - name: Setup GPG environment
-      run: |
-        sudo apt-get update && sudo apt-get install -y gnupg2
-        echo "$GPG_PRIVATE_KEY" > private.key
-        echo "$GPG_PASSPHRASE" | gpg --batch --passphrase-fd 0 --pinentry-mode loopback --no-tty --quiet --yes --import private.key
-        rm private.key
-      shell: bash 
     - name: Build with Gradle
-      run: ./gradlew release --debug
-    - name: Delete GPG key from keyring
-      if: always()
-      run: |
-        rm -rf ~/.gnupg
-      shell: bash
+      run: ./gradlew build --info
