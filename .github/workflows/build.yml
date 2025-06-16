@@ -1,12 +1,18 @@
 name: CI Build
 on:
   push:
+    branches:
+      - snapshot
+      - main
     paths-ignore:
     - 'docs/**'
     - '.github/**/*docs*'
     - '.github/**/*codeql*'
     - '.github/*.yml'
   pull_request:
+    branches:
+      - snapshot
+      - main
     paths-ignore:
     - 'docs/**'
     - '.github/**/*docs*'
@@ -37,6 +43,7 @@ jobs:
       CS_USERNAME: ${{secrets.CENTRAL_SONATYPE_TOKEN_USERNAME}}
       GPG_PASSPHRASE: ${{secrets.GPG_PASSPHRASE}}
       GPG_KEY_ID: ${{secrets.GPG_KEY_ID}}
+      GPG_PRIVATE_KEY: ${{secrets.GPG_PRIVATE_KEY}}
     steps:
     - name: Git Checkout
       uses: actions/checkout@v4
@@ -52,5 +59,18 @@ jobs:
       run: chmod +x ./gradlew
     - name: Gradle version
       run: ./gradlew --no-daemon --version
+    - name: Setup GPG environment
+      run: |
+        # Stelle sicher, dass GPG verfügbar ist
+        sudo apt-get update && sudo apt-get install -y gnupg2
+        echo "$GPG_PRIVATE_KEY_ASCII_ARMORED" > private.key
+        echo "$GPG_PASSPHRASE" | gpg --batch --passphrase-fd 0 --pinentry-mode loopback --no-tty --quiet --yes --import private.key
+        rm private.key
+      shell: bash 
     - name: Build with Gradle
       run: ./gradlew release --debug
+    - name: Delete GPG key from keyring
+      if: always()
+      run: |
+        rm -rf ~/.gnupg
+      shell: bash
