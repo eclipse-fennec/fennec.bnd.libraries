@@ -7,7 +7,6 @@
 		name			= 'Sonatype'
 		
 # Set release repository
-#-releaserepo: ${if;${env;DO_RELEASE};'Sonatype'}
 -releaserepo: Sonatype
 
 # Connection settings
