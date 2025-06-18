@@ -6,18 +6,12 @@
 		index			= ${.}/sonatype.maven;\
 		name			= 'Sonatype'
 		
--plugin.dimrelease: \
-	aQute.bnd.repository.maven.provider.MavenBndRepository;\
-		snapshotUrl=https://devel.data-in-motion.biz/nexus/repository/dim-snapshot/;\
-		releaseUrl=https://devel.data-in-motion.biz/nexus/repository/dim-release/;\
-		name='DIM_Release'
-
 # Set release repository
--releaserepo: ${if;${env;DO_RELEASE};Sonatype}
+-releaserepo: Sonatype
 
 # Connection settings
 -connection-settings: \
-	${if;${env;DO_RELEASE};${workspace}/cnf/releng/sonatype-settings.xml;false}
+	${workspace}/cnf/releng/sonatype-settings.xml
 
 # Make a maven release
 # Release and sign Jars für Sonatype / Central release
@@ -32,7 +26,7 @@ gpg: gpg --local-user ${env;GPG_KEY_ID} --pinentry-mode loopback
 
 # Decide for snapshot or release
 -include: \
-	${if;${is;${env;DO_RELEASE};'true'};\
+	${if;${env;DO_RELEASE;"false"};\
 		${workspace}/cnf/releng/release.bnd;\
 		${workspace}/cnf/releng/snapshot.bnd\
 	}	
