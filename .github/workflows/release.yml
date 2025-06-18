@@ -29,6 +29,8 @@ jobs:
       GPG_PRIVATE_KEY: ${{secrets.GPG_PRIVATE_KEY}}
       DO_RELEASE: ${{ github.ref == 'refs/heads/main' && 'true' || 'false' }}
     steps:
+    - name: Install jp
+      run: sudo apt install -y jp
     - name: Git Checkout
       uses: actions/checkout@v4
     - name: Create Staging Repository
