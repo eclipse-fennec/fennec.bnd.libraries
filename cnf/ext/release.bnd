@@ -32,7 +32,7 @@ gpg: gpg --local-user ${env;GPG_KEY_ID} --pinentry-mode loopback
 
 # Decide for snapshot or release
 -include: \
-	${if;${is;${env;DO_RELEASE};'true'};\
+	${if;${env;DO_RELEASE;"false"};\
 		${workspace}/cnf/releng/release.bnd;\
 		${workspace}/cnf/releng/snapshot.bnd\
 	}	
