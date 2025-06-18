@@ -6,14 +6,9 @@
 		index			= ${.}/sonatype.maven;\
 		name			= 'Sonatype'
 		
--plugin.dimrelease: \
-	aQute.bnd.repository.maven.provider.MavenBndRepository;\
-		snapshotUrl=https://devel.data-in-motion.biz/nexus/repository/dim-snapshot/;\
-		releaseUrl=https://devel.data-in-motion.biz/nexus/repository/dim-release/;\
-		name='DIM_Release'
-
 # Set release repository
--releaserepo: ${if;${env;DO_RELEASE};Sonatype}
+#-releaserepo: ${if;${env;DO_RELEASE};'Sonatype'}
+-releaserepo: Sonatype
 
 # Connection settings
 -connection-settings: \
