@@ -12,7 +12,7 @@
 
 # Connection settings
 -connection-settings: \
-	${if;${env;DO_RELEASE};${workspace}/cnf/releng/sonatype-settings.xml;false}
+	${workspace}/cnf/releng/sonatype-settings.xml
 
 # Make a maven release
 # Release and sign Jars für Sonatype / Central release
