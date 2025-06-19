@@ -22,7 +22,7 @@ defaults:
 
 jobs:
   build:
-    name: GRadle Snapshot/Release Build
+    name: Gradle Snapshot/Release Build
     runs-on: ubuntu-latest
     env:
       CS_PASSWORD: ${{secrets.CENTRAL_SONATYPE_TOKEN_PASSWORD}}
@@ -41,7 +41,7 @@ jobs:
       with:
         distribution: "temurin"
         cache: "gradle"
-        java-version: ${{ matrix.java }}
+        java-version: 21
     - name: Grant execute permission for gradlew
       run: chmod +x ./gradlew
     - name: Gradle version
