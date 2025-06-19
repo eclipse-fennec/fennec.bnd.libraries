@@ -2,12 +2,13 @@ name: CI Build
 on:
   push:
     branches-ignore:
+      # This build should run on all pushes EXCEPT main and snapshot branches.
       - main
       - snapshot
   pull_request:
-    branches-ignore:
-      - main
-      - snapshot
+    # This build should run for all pull requests.
+    branches:
+    - '*' # Run on all branches for pull requests.
 
 env:
   LC_ALL: en_US.UTF-8
