@@ -22,7 +22,7 @@ defaults:
 
 jobs:
   build:
-    namer: Release Build
+    name: GRadle Snapshot/Release Build
     runs-on: ubuntu-latest
     env:
       CS_PASSWORD: ${{secrets.CENTRAL_SONATYPE_TOKEN_PASSWORD}}
