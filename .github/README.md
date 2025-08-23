@@ -9,18 +9,23 @@ This directory contains the CI/CD configuration for Eclipse Fennec Bndtools Libr
 - **Purpose**: Validation builds for development and feature branches
 - **Actions**: `./gradlew build --info`
 
-### `release.yml` - Release Build
-- **Triggers**: Pushes to `main` and `snapshot` branches only
-- **Purpose**: Automated releases to Maven Central
-
-#### Branch-specific Behavior:
-- **`main` branch**: Production release to Central Portal with staging
+### `release.yml` - Production Release
+- **Triggers**: Pushes to `main` branch only
+- **Purpose**: Production releases to Maven Central with staging
+- **Process**:
   - Sets `DO_RELEASE=true`
-  - Uses GPG signing
+  - Uses GPG signing for artifacts
   - Calls `stage.sh` script for staging repository management
-- **`snapshot` branch**: Snapshot release to Central snapshots
+  - Deploys to Central Portal staging repositories
+
+### `snapshot.yml` - Snapshot Release
+- **Triggers**: Pushes to `snapshot` branch only
+- **Purpose**: Snapshot releases to Maven Central snapshots
+- **Process**:
   - Sets `DO_RELEASE=false`
+  - Uses GPG signing for artifacts
   - Direct upload to `central.sonatype.com/repository/maven-snapshots/`
+  - No staging required
 
 ## Scripts
 
@@ -54,5 +59,5 @@ The following GitHub secrets must be configured:
 ## Release Process
 
 1. **Development**: Work on feature branches → `build.yml` validates changes
-2. **Snapshots**: Merge to `snapshot` branch → automatic snapshot release
-3. **Production**: Merge to `main` branch → production release with staging
+2. **Snapshots**: Merge to `snapshot` branch → `snapshot.yml` automatic snapshot release
+3. **Production**: Merge to `main` branch → `release.yml` production release with staging
