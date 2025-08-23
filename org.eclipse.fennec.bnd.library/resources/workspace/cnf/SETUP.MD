@@ -14,7 +14,7 @@ The Maven group-id is defaulted to **!#project-symbolic-name#!** in *cnf/build.b
   - Select `with a GitHub Action`
   - Copy the `SONAR_TOKEN` to notepad
   - NOT!!!! follow the description .about `github/workflows/build.yml`. _this still [exists](../blob/main/.github/workflows/sonar.yml) in this template._
-  - GitHub -> Project-Settings -> Secrets -> [New Repository Secrets](Link: https://github.com/eclipse-fennec/!#project-symbolic-name#!/settings/secrets/actions/new)
+  - GitHub -> Project-Settings -> Secrets -> [New Repository Secrets](Link: https://github.com/!#orga-symbolic-name#!/!#project-symbolic-name#!/settings/secrets/actions/new)
     - add `SONAR_TOKEN`
 
 ## Gradle init
@@ -35,7 +35,7 @@ git init
 git add .
 git commit -m "initial commit"
 git branch -M main
-git remote add origin git@github.com:eclipse-fennec/!#project-symbolic-name#!.git
+git remote add origin git@github.com:!#orga-symbolic-name#!/!#project-symbolic-name#!.git
 git push -u origin main
 git checkout -b snapshot
 git push --set-upstream origin snapshot
@@ -44,8 +44,8 @@ git checkout -b "initial"
 
 ## Jenkins
 - wait up to 15 minutes for the auto-import
-- [Jenkins Mainpage](https://ci.eclipse.org/eclipse-fennec/)
-- [Jenkins !#project-symbolic-name#! branches](https://ci.eclipse.org/eclipse-fennec/job/!#project-symbolic-name#!/)
+- [Jenkins Mainpage](https://ci.eclipse.org/!#orga-symbolic-name#!/)
+- [Jenkins !#project-symbolic-name#! branches](https://ci.eclipse.org/!#orga-symbolic-name#!/job/!#project-symbolic-name#!/)
 
 ## License check
 

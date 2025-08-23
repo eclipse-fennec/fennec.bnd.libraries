@@ -1,7 +1,7 @@
-Bundle-DocURL: https://github.com/eclipse-fennec/${github-project}
-Bundle-SCM: url=https://github.com/eclipse-fennec/${github-project}, \
-	connection=scm:git:https://github.com/eclipse-fennec/${github-project}.git, \
-	developerConnection=scm:git:git@github.com:eclipse-fennec/${github-project}.git
+Bundle-DocURL: https://github.com/${github-orga}/${github-project}
+Bundle-SCM: url=https://github.com/${github-orga}/${github-project}, \
+	connection=scm:git:https://github.com/${github-orga}/${github-project}.git, \
+	developerConnection=scm:git:git@github.com:${github-orga}/${github-project}.git
 Bundle-Version: ${project-version}
 Bundle-License: Eclipse Public License 2.0
 Bundle-Copyright: Data In Motion Consulting GmbH - All rights reserved
@@ -35,7 +35,7 @@ mvn-base-version: ${versionmask;===s;${project-version}}
 -includeresource.license: \
 	META-INF/LICENSE=${.}/LICENSE
 
-# Some default to the buildpath for basix dependencies on OSGi	
+# Some default to the buildpath for basic dependencies on OSGi	
 -buildpath.base: \
     org.osgi.annotation.versioning,\
     org.osgi.annotation.bundle, \

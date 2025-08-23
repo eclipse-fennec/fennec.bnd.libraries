@@ -4,9 +4,9 @@ Eclipse sensiNact is an open source project hosted by the Eclipse Foundation. Co
 
 ## Issues
 
-If you're having a problem with Eclipse Fennec then our first recommendation would be to look at [the README](https://github.com/eclipse-fennec/!#project-symbolic-name#!).
+If you're having a problem with Eclipse Fennec then our first recommendation would be to look at [the README](https://github.com/!#orga-symbolic-name#!/!#project-symbolic-name#!).
 
-If you're still having problems then search the [issue tracker](https://github.com/eclipse-fennec/!#project-symbolic-name#!/issues) for a relevant issue or create a new one.
+If you're still having problems then search the [issue tracker](https://github.com/!#orga-symbolic-name#!/!#project-symbolic-name#!/issues) for a relevant issue or create a new one.
 
 ## Contributing code
 
@@ -55,7 +55,7 @@ Now you can open the project in your IDE and it won't complain about missing fil
 
 - you want to force a clean build
 - your changes affect code generation
-- you want to see if your changes will pass [the same builds that GitHub Actions runs](https://github.com/eclipse-fennec/!#project-symbolic-name#!/actions)
+- you want to see if your changes will pass [the same builds that GitHub Actions runs](https://github.com/!#orga-symbolic-name#!/!#project-symbolic-name#!/actions)
 
 ## Semantic Versioning
 

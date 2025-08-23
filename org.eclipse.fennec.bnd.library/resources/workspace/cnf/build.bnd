@@ -11,6 +11,8 @@
 # Activate baselining
 #fennecBaselining: true
 github-project: !#project-symbolic-name#!
+github-orga: !#orga-symbolic-name#!
+
 base-version: 1.0.0
 
 # Maven Central Group-Id
