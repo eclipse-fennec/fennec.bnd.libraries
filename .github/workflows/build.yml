@@ -7,7 +7,7 @@ on:
       - snapshot
   pull_request:
     # This build should run for all pull requests.
-    branches:
+  branches:
     - '*' # Run on all branches for pull requests.
 
 env:

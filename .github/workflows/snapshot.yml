@@ -29,6 +29,7 @@ jobs:
       GPG_PASSPHRASE: ${{secrets.GPG_PASSPHRASE}}
       GPG_KEY_ID: ${{secrets.GPG_KEY_ID}}
       GPG_PRIVATE_KEY: ${{secrets.GPG_PRIVATE_KEY}}
+      DO_RELEASE: false
     steps:
     - name: Git Checkout
       uses: actions/checkout@v4
@@ -52,7 +53,7 @@ jobs:
         rm private.key
       shell: bash 
     - name: Build with Gradle
-      run: ./gradlew release --debug
+      run: ./gradlew release --info
     - name: Delete GPG key from keyring
       if: always()
       run: |
