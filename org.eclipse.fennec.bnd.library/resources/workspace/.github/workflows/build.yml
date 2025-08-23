@@ -40,9 +40,3 @@ jobs:
       run: ./gradlew --no-daemon --version
     - name: Build with Gradle
       run: ./gradlew build --info
-    - name: Upload Test Reports
-        if: ${{ always() && ((steps.build.outcome == 'success') || (steps.build.outcome == 'failure')) }}
-        uses: actions/upload-artifact@v4
-        with:
-          path: |
-            */generated/test-reports/*/TEST-*.xml
