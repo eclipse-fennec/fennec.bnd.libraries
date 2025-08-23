@@ -1,11 +1,12 @@
 .DS_Store
 .gradle/
-/generated/
+/target/
 .metadata
 /build/
 /release/
+/build/
 /local/
 /cnf/cache/
-/build/
 generated/
 bin/
+bin_test/

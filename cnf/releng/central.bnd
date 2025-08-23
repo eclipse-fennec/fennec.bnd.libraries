@@ -21,12 +21,3 @@
 #gpg-dir: 
 gpg: gpg --local-user ${env;GPG_KEY_ID} --pinentry-mode loopback
 
--pom: true
--digest: sha256
-
-# Decide for snapshot or release
--include: \
-	${if;${env;DO_RELEASE;"false"};\
-		${workspace}/cnf/releng/release.bnd;\
-		${workspace}/cnf/releng/snapshot.bnd\
-	}	

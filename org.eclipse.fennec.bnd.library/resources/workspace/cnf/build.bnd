@@ -1,44 +1,46 @@
 # We include setups for
-#	OSGi-Test Support - gecko-osgitest
-#	DIMC Github-Configuration - gecko-dimc
-#	Jacoco Support - gecko-jacoco
+#	Fennec base setup
+#	OSGi-Test Support
+#	Jacoco Support
 -library: \
-	geckoDIMC,\
-	geckoOSGi-Test,\
-	geckoJacoco
+	fennec,\
+	fennecTest,\
+	fennecJacoco
 
-# Needed because we enabled library 'gecko-dimc'
+# Needed because we enabled library 'fennec'
 # Activate baselining
-dimcBaselining: true
+#fennecBaselining: true
 github-project: !#project-symbolic-name#!
 base-version: 1.0.0
 
 # Maven Central Group-Id
-# For Geckoprojects the groupid must start with org.geckoprojects
+# For Eclipse Fennec the groupid must start with org.eclipse.fennec
 -groupid: !#project-group-id#!
 
-javac.source: 11
-javac.target: 11
+javac.source: 17
+javac.target: 17
 
--require-bnd "(version>=6.3.1)"
+-require-bnd "(version>=7.1.0)"
 
 -jpms-module-info:
 
 -plugin.2.Central: \
     aQute.bnd.repository.maven.provider.MavenBndRepository; \
-        snapshotUrl="https://oss.sonatype.org/content/repositories/snapshots/"; \
-        releaseUrl=https://repo.maven.apache.org/maven2/; \
+        snapshotUrl=https://central.sonatype.com/repository/maven-snapshots/; \
+        releaseUrl=https://central.sonatype.com/; \
         index=${.}/central.mvn; \
         readOnly=true; \
         poll.time=-1; \
         name="Central"
-        
+
+# Local repository where artifacts can be checked in        
 -plugin.0.Local: \
 	aQute.bnd.deployer.repository.LocalIndexedRepo; \
 		name = Local; \
 		pretty = true; \
 		local = ${build}/local
 
+# Local temporary repository where artifacts are not checked in
 -plugin.1.Temp: \
 	aQute.bnd.deployer.repository.LocalIndexedRepo; \
 		name = Temp; \
