@@ -37,4 +37,4 @@ org.objenesis:objenesis:3.3
 biz.aQute.bnd:biz.aQute.tester.junit-platform:7.0.0
 
 # Bring the OSGi test project library and template with this dependency
-org.geckoprojects.bnd:org.gecko.bnd.osgitest.project.library:${mvn-base-version}
+org.eclipse.fennec.bnd:org.eclipse.fennec.osgitest.project.bnd.library:${mvn-base-version}
