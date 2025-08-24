@@ -12,6 +12,7 @@ Provide-Capability: \
 fennec-base:\
     bnd.library;\
         bnd.library     		= fennec; \
+        version					= ${project-version}; \
         path            		= library
 
 workspace-template-fennec:\
