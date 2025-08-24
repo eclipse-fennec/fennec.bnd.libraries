@@ -7,6 +7,7 @@ base-version: 0.0.3
 # Set projects Github repository name
 github-project: fennec.bnd.libraries
 
+-require-bnd: "(version>=7.1.0)"
 # Set Java version
 javac.source: 17
 javac.target: 17
