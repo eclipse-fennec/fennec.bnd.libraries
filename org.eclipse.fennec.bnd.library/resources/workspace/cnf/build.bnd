@@ -19,8 +19,8 @@ base-version: 1.0.0
 # For Eclipse Fennec the groupid must start with org.eclipse.fennec
 -groupid: !#project-group-id#!
 
-javac.source: 17
-javac.target: 17
+javac.source: 21
+javac.target: 21
 
 -require-bnd "(version>=7.1.0)"
 
@@ -28,7 +28,7 @@ javac.target: 17
 
 -plugin.2.Central: \
     aQute.bnd.repository.maven.provider.MavenBndRepository; \
-        snapshotUrl=https://central.sonatype.com/repository/maven-snapshots/; \
+        snapshotUrl="https://oss.sonatype.org/content/repositories/snapshots/,https://central.sonatype.com/repository/maven-snapshots/"; \
         releaseUrl=https://central.sonatype.com/; \
         index=${.}/central.mvn; \
         readOnly=true; \

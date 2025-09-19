@@ -3,7 +3,8 @@
 
 -includeresource: resources,\
 	{workspace/cnf/central.mvn=resources/workspace/cnf/central.mvn};onduplicate:=OVERWRITE,\
-	{workspace/gradle.properties=resources/workspace/gradle.properties};onduplicate:=OVERWRITE
+	{workspace/gradle.properties=resources/workspace/gradle.properties};onduplicate:=OVERWRITE,\
+	workspace/.gitignore=resource/workspace/.gitignore
 
 Provide-Capability: \
 	${fennec-base},\
