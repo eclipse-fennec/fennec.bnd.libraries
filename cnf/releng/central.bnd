@@ -10,7 +10,7 @@ sonatype_snapshots:  https://central.sonatype.com/repository/maven-snapshots/
 		snapshotUrl		= ${sonatype_snapshots};\
 		stagingUrl		= ${sonatype_release};\
 		releaseUrl		= ${mavencentral};\
-		sonatypeMode    = autopublish;\
+		sonatypeMode    = manual;\
 		index			= ${.}/sonatype.maven;\
 		name			= 'Sonatype'
 		
