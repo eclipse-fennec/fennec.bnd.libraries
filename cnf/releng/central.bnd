@@ -2,7 +2,9 @@
 -plugin.3.Sonatype: \
 	aQute.bnd.repository.maven.provider.MavenBndRepository;\
 		snapshotUrl		= https://central.sonatype.com/repository/maven-snapshots/;\
-		releaseUrl		= https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/;\
+		stagingUrl		= https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/;\
+		releaseUrl		= https://central.sonatype.com/;\
+		sonatypeMode    = autopublish;\
 		index			= ${.}/sonatype.maven;\
 		name			= 'Sonatype'
 		
@@ -11,7 +13,7 @@
 
 # Connection settings
 -connection-settings: \
-	${workspace}/cnf/releng/sonatype-settings.xml
+	${.}/sonatype-settings.xml
 
 # Make a maven release
 # Release and sign Jars für Sonatype / Central release
@@ -21,12 +23,3 @@
 #gpg-dir: 
 gpg: gpg --local-user ${env;GPG_KEY_ID} --pinentry-mode loopback
 
--pom: true
--digest: sha256
-
-# Decide for snapshot or release
--include: \
-	${if;${env;DO_RELEASE;"false"};\
-		${workspace}/cnf/releng/release.bnd;\
-		${workspace}/cnf/releng/snapshot.bnd\
-	}	

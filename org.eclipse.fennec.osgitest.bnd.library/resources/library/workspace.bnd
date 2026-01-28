@@ -1,16 +1,15 @@
 -plugin.junit5: \
 	aQute.bnd.repository.maven.provider.MavenBndRepository;\
-		releaseUrl	= "https://repo.maven.apache.org/maven2/"; \
-		snapshotUrl	= "https://oss.sonatype.org/content/repositories/snapshots/";\
-		index           = "${.}/osgi-test.maven" ;\
+		releaseUrl	= https://repo.maven.apache.org/maven2/; \
+		snapshotUrl	= https://central.sonatype.com/repository/maven-snapshots/; \
+		index       = "${.}/osgi-test.maven" ;\
 		poll.time	= -1;\
 		readOnly	= true;\
 		name="OSGi-Test Dependencies"
 
--require-bnd: "(version>=7.0.0)"
+-require-bnd: "(version>=7.1.0)"
 
 -testpath.junit: \
-	${junit},\
 	${mockito}	
 
 -runsystempackages.objenesis: sun.misc,sun.reflect

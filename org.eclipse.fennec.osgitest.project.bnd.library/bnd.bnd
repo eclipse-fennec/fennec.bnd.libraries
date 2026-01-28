@@ -11,6 +11,7 @@ Provide-Capability: \
 fennec-base:\
     bnd.library;\
         bnd.library     		= enableOSGi-Test;\
+        version					= ${project-version}; \
         path            		= library
  
 project-template-osgi-test:\
@@ -18,9 +19,9 @@ project-template-osgi-test:\
 		org.bndtools.template	= project;\
 		name			= OSGi-Test/JUnit5 Integration Test Project;\
 		category		= ${osgi-test-category};\
-		ranking:Double		= 998;\
+		ranking:Double	= 998;\
 		engine			= mustache;\
-		dir			= projects/osgi-test;\
+		dir				= projects/osgi-test;\
 		icon			= "${junit-icon}";\
 		help			= osgi-test-help.xml
 		
@@ -29,9 +30,9 @@ project-template-osgi-tck:\
 		org.bndtools.template	= project;\
 		name			= OSGi-Test/JUnit5 Integration TCK Test Project;\
 		category		= ${osgi-test-category};\
-		ranking:Double		= 999;\
+		ranking:Double	= 999;\
 		engine			= mustache;\
-		dir			= projects/osgi-tck;\
+		dir				= projects/osgi-tck;\
 		icon			= "${junit-icon}";\
 		help			= osgi-tck-help.xml;\
 		metaType		= osgi-tck-metatype.xml

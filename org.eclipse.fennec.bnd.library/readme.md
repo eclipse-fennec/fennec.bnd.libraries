@@ -38,8 +38,8 @@ In addition to that some pre-configurations are done to ease the use on project 
 
 There are some mandatory properties to be set:
 
-**github-project:** - The name of the GitHub Repository e.g. **github-project: org.eclipse.fennec.emf.osgi**
-**base-version:** - The default Bundle Version that is used, e.g. **base-version: 1.2.3.SNAPSHOT**
+**github-project:** - The name of the GitHub Repository e.g. **github-project: org.eclipse.fennec.foo**
+**base-version:** - The default Bundle Version that is used, e.g. **base-version: 1.2.3**
 
 You should provide these information in your **build.bnd**, when this library is enabled.
 
@@ -65,7 +65,7 @@ This action can only be triggered from our internal Jenkins instance.
 
 Baselining is pre-configured for the Maven Central release repository. Baselining can then be activated for each project, if wanted using `-baseline: *`.
 
-There is a variable that is preset to `fennecBaselining: true`.
+There is a variable that is preset to `fennecBaselining: false`.
 
 If you set this variable to false in your *build.bnd*, baselining will be deactivated.
 

@@ -33,8 +33,8 @@ org.hamcrest:hamcrest:2.2
 
 # Others
 org.apiguardian:apiguardian-api:1.1.2
-org.objenesis:objenesis:3.3
-biz.aQute.bnd:biz.aQute.tester.junit-platform:7.0.0
+org.objenesis:objenesis:3.4
+biz.aQute.bnd:biz.aQute.tester.junit-platform:${bndversion}
 
 # Bring the OSGi test project library and template with this dependency
-org.geckoprojects.bnd:org.gecko.bnd.osgitest.project.library:${mvn-base-version}
+org.eclipse.fennec.bnd:org.eclipse.fennec.osgitest.project.bnd.library:${mvn-base-version}

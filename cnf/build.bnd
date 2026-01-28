@@ -1,13 +1,13 @@
-
 # Set projects group id
 -groupid: org.eclipse.fennec.bnd
 
 # Set projects current version
-base-version: 0.0.2.SNAPSHOT
+base-version: 0.0.3
 
 # Set projects Github repository name
 github-project: fennec.bnd.libraries
 
+-require-bnd: "(version>=7.1.0)"
 # Set Java version
 javac.source: 17
 javac.target: 17
@@ -18,17 +18,18 @@ javac.target: 17
 		name = Local; \
 		pretty = true; \
 		local = ${build}/local
-# Temporary repository that will not be checked in		
--plugin.1.Temp: \
+		
+# Local repository content will checked in
+-plugin.1.Release: \
 	aQute.bnd.deployer.repository.LocalIndexedRepo; \
-		name = Temp; \
+		name = Release; \
 		pretty = true; \
-		local = ${build}/cache/temp
+		local = ${build}/release
 		
 # Maven Central	readonly
 -plugin.2.Central: \
 	aQute.bnd.repository.maven.provider.MavenBndRepository; \
-        	snapshotUrl=https://central.sonatype.com/repository/maven-snapshots/; \
+        snapshotUrl=https://central.sonatype.com/repository/maven-snapshots/; \
 		releaseUrl=https://central.sonatype.com/; \
 		index=${.}/central.maven; \
 		readOnly=true; \
@@ -38,4 +39,22 @@ javac.target: 17
 # Set category variables for project template categories
 category: ccc/Eclipse Fennec Bndtools Standard Templates
 osgi-test-category: ccc/OSGi-Test & JUnit5 Jupiter
-		
+
+maven-central: true
+
+-maven-release: pom
+-pom: true
+-digest: sha256
+
+-releaserepo: Release
+
+-include: \
+	${if;${env;DO_RELEASE;false};\
+		${.}/releng/release.bnd;\
+		${.}/releng/snapshot.bnd\
+	},\
+	${if;${env;GPG_PASSPHRASE};\
+		${if;${maven-central};\
+			${.}/releng/central.bnd\
+		}\
+	}	

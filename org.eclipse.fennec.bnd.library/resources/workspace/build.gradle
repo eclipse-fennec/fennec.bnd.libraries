@@ -13,6 +13,7 @@ subprojects {
 
     //  Apply plugin: 'jacoco' to all submodules JUnit tests are generated as generated/jacoco/test.exec
     apply plugin: 'jacoco'
+    pply plugin: 'java'
     // We need to define a repository, otherwise Jacoco dependencies cannot be resolved
     repositories {
         mavenCentral()
@@ -22,14 +23,22 @@ subprojects {
         useJUnitPlatform()
     }
     
+       // Add JUnit dependencies for modules that have Gradle tests
+    dependencies {
+        testImplementation 'org.junit.jupiter:junit-jupiter:5.14.0'
+        testImplementation 'org.junit.platform:junit-platform-launcher:1.14.0'
+        testImplementation 'org.mockito:mockito-junit-jupiter:4.11.0'
+        testImplementation 'org.assertj:assertj-core:3.27.4'
+    }
+    
 }
 
 // Sonar setup
 sonarqube {
   properties {
-    property "sonar.projectName", "fennec.bnd.libraries"
-    property "sonar.projectKey", "eclipse-fennec-fennec.bnd.libraries"
-    property "sonar.organization", "eclipse-fennec"
+    property "sonar.projectName", "!#project-symbolic-name#!"
+    property "sonar.projectKey", "!#orga-symbolic-name#!-!#project-symbolic-name#!"
+    property "sonar.organization", "!#orga-symbolic-name#!"
     property "sonar.host.url", "https://sonarcloud.io"
     property "sonar.coverage.jacoco.xmlReportPaths", "${rootDir}/build/reports/jacoco/codeCoverageReport/codeCoverageReport.xml"
     //property "sonar.exclusions", "org.eclipse.fennec.project/**/*.java, org.eclipse.fennec.other.project/**/*.java"

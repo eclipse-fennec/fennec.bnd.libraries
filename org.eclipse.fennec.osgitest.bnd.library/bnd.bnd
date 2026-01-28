@@ -1,6 +1,6 @@
 
-jupiter.version: 5.13.0
-platform.version: 1.13.0
+jupiter.version: 5.10.3
+platform.version: 1.10.3
 osgi.test.version: 1.3.0
 mockito.version: 4.11.0
 assertj.version: 3.26.3
@@ -19,6 +19,7 @@ Provide-Capability: \
 fennec-base:\
     bnd.library;\
         bnd.library     		= fennecTest; \
+        version					= ${project-version}; \
         path            		= library
 
 workspace-template-osgi-test:\

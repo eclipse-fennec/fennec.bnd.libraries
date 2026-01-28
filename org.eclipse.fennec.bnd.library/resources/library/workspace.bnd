@@ -1,7 +1,7 @@
-Bundle-DocURL: https://github.com/eclipse-fennec/${github-project}
-Bundle-SCM: url=https://github.com/eclipse-fennec/${github-project}, \
-	connection=scm:git:https://github.com/eclipse-fennec/${github-project}.git, \
-	developerConnection=scm:git:git@github.com:eclipse-fennec/${github-project}.git
+Bundle-DocURL: https://github.com/${github-orga}/${github-project}
+Bundle-SCM: url=https://github.com/${github-orga}/${github-project}, \
+	connection=scm:git:https://github.com/${github-orga}/${github-project}.git, \
+	developerConnection=scm:git:git@github.com:${github-orga}/${github-project}.git
 Bundle-Version: ${project-version}
 Bundle-License: Eclipse Public License 2.0
 Bundle-Copyright: Data In Motion Consulting GmbH - All rights reserved
@@ -35,20 +35,19 @@ mvn-base-version: ${versionmask;===s;${project-version}}
 -includeresource.license: \
 	META-INF/LICENSE=${.}/LICENSE
 
-# Some default to the buildpath for basix dependencies on OSGi	
+# Some default to the buildpath for basic dependencies on OSGi	
 -buildpath.base: \
     org.osgi.annotation.versioning,\
     org.osgi.annotation.bundle, \
     org.osgi.service.component.annotations,\
     org.osgi.service.metatype.annotations
 
-# Activate baselining per default to de-activate set 'dimBaselining: false'
-fennecBaselining: true
+# Activate baselining per default to de-activate set 'fennec-baselining: false'
+fennec-baselining: false
+# Activates the release to maven central (sonartype respectively)
+maven-central: true
 
-# Activates the release to maven central (sonartype repsectivly)
-mavenCentral: true
-
-fennecDiffignore:\
+fennec-diffignore:\
 	*.xml,\
 	module-info.class,\
 	*/pom.properties,\
@@ -64,25 +63,23 @@ fennecDiffignore:\
 	OSGI-OPT/*
 
 # Ignore files for baselining
--diffignore: ${fennecDiffignore}
-	
+-diffignore: ${fennec-diffignore}
+
 -maven-release: pom
 -pom: true
 -digest: sha256
 
 -releaserepo: Release
-
-# If the 'release.dir property is set , we make a release release, otherwise we make only a snapshot release
-# As long as we are on Jenkins, we also release to Maven Central
+	
 -include: \
-	${if;${fennecBaselining};\
+	${if;${fennec-baselining};\
 		${.}/baseline.bnd},\
-	${if;${def;release.dir};\
+	${if;${env;DO_RELEASE;false};\
 		${.}/releng/release.bnd;\
 		${.}/releng/snapshot.bnd\
 	},\
-	${if;${env;GNUPG_PASSPHRASE};\
-		${if;${mavenCentral};\
-		${.}/releng/central.bnd\
+	${if;${env;GPG_PASSPHRASE};\
+		${if;${maven-central};\
+			${.}/releng/central.bnd\
 		}\
 	}	
