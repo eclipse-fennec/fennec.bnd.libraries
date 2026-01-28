@@ -59,7 +59,3 @@ jobs:
       run: |
         rm -rf ~/.gnupg
       shell: bash
-    - name: Grant execute permission for stage script
-      run: chmod +x ./.github/scripts/stage.sh
-    - name: Create Staging Repository
-      run: ./.github/scripts/stage.sh org.eclipse.fennec
