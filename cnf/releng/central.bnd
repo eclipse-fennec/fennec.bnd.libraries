@@ -9,8 +9,8 @@ sonatype_snapshots:  https://central.sonatype.com/repository/maven-snapshots/
 	aQute.bnd.repository.maven.provider.MavenBndRepository;\
 		snapshotUrl		= ${sonatype_snapshots};\
 		stagingUrl		= ${sonatype_release};\
-		releaseUrl		= ${mavencentral]
-		sonatypeMode    = manual;\
+		releaseUrl		= ${mavencentral};\
+		sonatypeMode    = autopublish;\
 		index			= ${.}/sonatype.maven;\
 		name			= 'Sonatype'
 		
