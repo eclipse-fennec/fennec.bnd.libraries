@@ -7,18 +7,11 @@ base-version: 0.0.3
 # Set projects Github repository name
 github-project: fennec.bnd.libraries
 
--require-bnd: "(version>=7.1.0)"
+-require-bnd: "(version>=7.2.1)"
 # Set Java version
 javac.source: 17
 javac.target: 17
-
-# Local repository content will checked in
--plugin.0.Local: \
-	aQute.bnd.deployer.repository.LocalIndexedRepo; \
-		name = Local; \
-		pretty = true; \
-		local = ${build}/local
-		
+	
 # Local repository content will checked in
 -plugin.1.Release: \
 	aQute.bnd.deployer.repository.LocalIndexedRepo; \
