@@ -1,8 +1,14 @@
+mavencentral:           https://repo.maven.apache.org/maven2
+sonatype_release:       https://central.sonatype.com/api/v1/publisher/upload
+sonatype_snapshots:     https://central.sonatype.com/repository/maven-snapshots
+
 # Sonatype Central für SNAPSHOT and release publishing
 -plugin.3.Sonatype: \
 	aQute.bnd.repository.maven.provider.MavenBndRepository;\
-		snapshotUrl		= https://central.sonatype.com/repository/maven-snapshots/;\
-		releaseUrl		= https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/;\
+		snapshotUrl		= ${sonatype_snapshots};\
+		stagingUrl		= ${sonatype_release};\
+		releaseUrl		= ${mavencentral};\
+		sonatypeMode    = manual;\
 		index			= ${.}/sonatype.maven;\
 		name			= 'Sonatype'
 		
@@ -11,7 +17,7 @@
 
 # Connection settings
 -connection-settings: \
-	${workspace}/cnf/releng/sonatype-settings.xml
+	${.}/sonatype-settings.xml
 
 # Make a maven release
 # Release and sign Jars für Sonatype / Central release
