@@ -5,7 +5,7 @@
     <server>
       <username>${env.CS_USERNAME}</username>
       <password>${env.CS_PASSWORD}</password>
-      <id>central.sonatype.com</id>
+      <id>production.portal.central.sonatype.com</id>
     </server>
   </servers>
 </settings>
