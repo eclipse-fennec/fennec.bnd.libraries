@@ -2,7 +2,7 @@
 -groupid: org.eclipse.fennec.bnd
 
 # Set projects current version
-base-version: 0.0.4
+base-version: 0.0.5
 
 # Set projects Github repository name
 github-project: fennec.bnd.libraries
@@ -38,6 +38,10 @@ maven-central: true
 -maven-release: pom
 -pom: true
 -digest: sha256
+
+-fixupmessages: \
+	"No translation found for macro: maven-central";is:=ignore,\
+	"\\[Include Override\\]:.*-pom.*";is:=ignore
 
 -releaserepo: Release
 
