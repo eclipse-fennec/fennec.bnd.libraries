@@ -7,7 +7,7 @@
 		readOnly	= true;\
 		name="OSGi-Test Dependencies"
 
--require-bnd: "(version>=7.1.0)"
+-require-bnd: "(version>=7.2.0)"
 
 -testpath.junit: \
 	${mockito}	
@@ -27,6 +27,7 @@ junit: \
 mockito: org.mockito.mockito-core;version=latest,\
 	org.mockito.junit-jupiter;version=latest,\
 	net.bytebuddy.byte-buddy;version=latest,\
+	net.bytebuddy.byte-buddy-agent;version=latest,\
 	org.objenesis;version=latest
 	
 osgitest: \
