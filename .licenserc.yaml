@@ -69,5 +69,7 @@ header:
     - 'gradlew'
     - 'gradlew.bat'
     - 'settings.gradle'
+    - '**/resources/**'
+    - '**/git/**'
 
   comment: always
