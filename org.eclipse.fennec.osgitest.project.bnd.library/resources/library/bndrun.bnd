@@ -2,8 +2,10 @@
 
 -runproperties.junit5: ${test-runproperties}
 
+# bootdelegation entry for mockito5: https://github.com/mockito/mockito/issues/2203#issuecomment-1706112164
 test-runproperties: \
-	tester.trace=true
+	tester.trace=true,\
+	org.osgi.framework.bootdelegation=org.mockito.internal.creation.bytebuddy.inject
 
 -runbundles.junit5: \
 	${junit},\
