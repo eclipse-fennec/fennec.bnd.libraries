@@ -2,7 +2,7 @@
 -groupid: org.eclipse.fennec.bnd
 
 # Set projects current version
-base-version: 0.0.8
+base-version: 0.0.9
 
 # Set projects Github repository name
 github-project: fennec.bnd.libraries
