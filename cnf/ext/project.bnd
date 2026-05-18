@@ -21,7 +21,7 @@ Bundle-Developers: \
         organizationUrl="https://www.datainmotion.com"; \
         roles="developer,architect"
 
-project-version: ${base-version}.SNAPSHOT
+project-version: ${base-version}
 mvn-base-version: ${versionmask;===S;${project-version}}
 
 # Includes sources from bundle

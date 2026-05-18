@@ -54,4 +54,4 @@ maven-central: true
 		${if;${maven-central};\
 			${.}/releng/central.bnd\
 		}\
-	}	
+	}
