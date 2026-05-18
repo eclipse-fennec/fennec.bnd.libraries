@@ -118,8 +118,8 @@ org.slf4j:slf4j-simple:1.7.36
 org.slf4j:slf4j-api:2.0.17
 org.slf4j:slf4j-api:1.7.36
 
-org.eclipse.fennec.bnd:org.eclipse.fennec.bnd.library:${mvn-base-version}
-org.eclipse.fennec.bnd:org.eclipse.fennec.jacoco.bnd.library:${mvn-base-version}
-org.eclipse.fennec.bnd:org.eclipse.fennec.osgitest.bnd.library:${mvn-base-version}
+org.eclipse.fennec.bnd:org.eclipse.fennec.bnd.library:${Bundle-Version}
+org.eclipse.fennec.bnd:org.eclipse.fennec.jacoco.bnd.library:${Bundle-Version}
+org.eclipse.fennec.bnd:org.eclipse.fennec.osgitest.bnd.library:${Bundle-Version}
 
 org.bndtools:org.bndtools.templates.osgi:${bndversion}
