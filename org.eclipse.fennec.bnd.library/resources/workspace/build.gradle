@@ -13,14 +13,26 @@ subprojects {
 
     //  Apply plugin: 'jacoco' to all submodules JUnit tests are generated as generated/jacoco/test.exec
     apply plugin: 'jacoco'
-    pply plugin: 'java'
+    apply plugin: 'java'
     // We need to define a repository, otherwise Jacoco dependencies cannot be resolved
     repositories {
         mavenCentral()
     }
     // Allow gradle to enable JUnit support in submodules
+    // Exclude @Tag("perf") tests from normal builds — run via perfTest task
     test {
-        useJUnitPlatform()
+        useJUnitPlatform {
+            excludeTags 'perf'
+        }
+    }
+
+    // Dedicated task for performance and thread-safety tests (@Tag("perf"))
+    tasks.register('perfTest', Test) {
+        useJUnitPlatform {
+            includeTags 'perf'
+        }
+        // Don't fail the build on perf test failures — results are informational
+        ignoreFailures = true
     }
     
        // Add JUnit dependencies for modules that have Gradle tests

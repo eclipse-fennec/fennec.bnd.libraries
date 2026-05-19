@@ -4,7 +4,6 @@
 -includeresource: resources,\
     library/releng=${workspace}/cnf/releng,\
 	{workspace/cnf/central.mvn=resources/workspace/cnf/central.mvn};onduplicate:=OVERWRITE,\
-	{workspace/cnf/central.mvn=resources/workspace/cnf/central.mvn};onduplicate:=OVERWRITE,\
 	{workspace/gradle.properties=resources/workspace/gradle.properties};onduplicate:=OVERWRITE,\
 	{workspace/.gitignore=git/_gitignore}
 
