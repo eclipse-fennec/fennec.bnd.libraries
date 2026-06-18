@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<setup:Product
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:jdt="http://www.eclipse.org/oomph/setup/jdt/1.0"
+    xmlns:setup="http://www.eclipse.org/oomph/setup/1.0"
+    xmlns:setup.p2="http://www.eclipse.org/oomph/setup/p2/1.0"
+    xsi:schemaLocation="http://www.eclipse.org/oomph/setup/jdt/1.0 https://raw.githubusercontent.com/eclipse-oomph/oomph/master/setups/models/JDT.ecore"
+    name="fennec.ide"
+    label="Eclipse Fennec / DIM IDE">
+  <annotation
+      source="http://www.eclipse.org/oomph/setup/BrandingInfo">
+    <detail
+        key="folderName">
+      <value>eclipse</value>
+    </detail>
+    <detail
+        key="folderName.macosx">
+      <value>Eclipse</value>
+    </detail>
+    <detail
+        key="siteURI">
+      <value>https://www.eclipse.org/downloads/packages/eclipse-modeling-tools</value>
+    </detail>
+  </annotation>
+  <setupTask
+      xsi:type="setup:VariableTask"
+      id="var.installation.name"
+      name="installation.name"
+      storageURI="scope://Installation"
+      label="Installation name"/>
+  <setupTask
+      xsi:type="setup:VariableTask"
+      id="var.workspace.name"
+      name="workspace.name"
+      defaultValue="ws"
+      storageURI="scope://Workspace"
+      label="Workspace name"/>
+  <setupTask
+      xsi:type="setup:VariableTask"
+      id="var.data"
+      type="BOOLEAN"
+      name="use.data.folder"
+      defaultValue="true"
+      storageURI="scope://Installation"
+      label="Use -data property">
+    <description>Variable wether to use the data folder variable or not</description>
+  </setupTask>
+  <setupTask
+      xsi:type="setup:VariableTask"
+      id="var.git.repo.dir"
+      name="git.repo.dir"
+      defaultValue="${user.home}/git"
+      storageURI="scope://User"
+      label="Git repository folder">
+    <description>Default folder for cloning Git repositories</description>
+  </setupTask>
+  <setupTask
+      xsi:type="setup:VariableTask"
+      id="var.git.user.name"
+      name="git.user.name"
+      storageURI="scope://User"
+      label="Git user name">
+    <description>Your name for Git commits and Signed-off-by</description>
+  </setupTask>
+  <setupTask
+      xsi:type="setup:VariableTask"
+      id="var.git.user.email"
+      name="git.user.email"
+      storageURI="scope://User"
+      label="Git user email">
+    <description>Your email for Git commits and Signed-off-by</description>
+  </setupTask>
+  <!-- Selectable bndtools P2 release (pinned versions from bndtools.org/bndtools.p2.repo) -->
+  <setupTask
+      xsi:type="setup:VariableTask"
+      id="bndtools-release"
+      type="URI"
+      name="bndtools-release"
+      defaultValue="https://bndtools.org/bndtools.p2.repo/7.3.0"
+      storageURI="scope://Installation"
+      label="bndtools release">
+    <choice
+        value="https://bndtools.org/bndtools.p2.repo/7.3.0"
+        label="rel 7.3.0"/>
+    <choice
+        value="https://bndtools.org/bndtools.p2.repo/7.2.3"
+        label="rel 7.2.3"/>
+    <choice
+        value="https://bndtools.jfrog.io/bndtools/update-latest"
+        label="release (JFrog)"/>
+    <choice
+        value="https://bndtools.jfrog.io/bndtools/update-snapshot"
+        label="snapshot (JFrog)"/>
+  </setupTask>
+  <!-- Ensure a Java 21 JRE is available so the 2025-06+ trains can launch and compile.
+       JustJ provides the JRE via P2 so we do not depend on the user's installed Java. -->
+  <setupTask
+      xsi:type="setup:CompoundTask"
+      name="JRE">
+    <setupTask
+        xsi:type="setup.p2:P2Task"
+        label="JRE21"
+        licenseConfirmationDisabled="true">
+      <requirement
+          name="org.eclipse.justj.openjdk.hotspot.jre.full.feature.group"/>
+      <repository
+          url="https://download.eclipse.org/justj/jres/21/updates/release"/>
+    </setupTask>
+    <setupTask
+        xsi:type="jdt:JRETask"
+        version="JavaSE-21"
+        location="${jre.location-21}"
+        name="JRE for JavaSE-21">
+      <description>Define the JRE (Java 21) needed to launch and build Eclipse Fennec / DIM projects</description>
+      <defaultExecutionEnvironment>JavaSE-21</defaultExecutionEnvironment>
+    </setupTask>
+  </setupTask>
+  <setupTask
+      xsi:type="setup:CompoundTask"
+      name="Eclipse.ini">
+    <setupTask
+        xsi:type="setup:EclipseIniTask"
+        excludedTriggers="STARTUP"
+        option="-perspective"
+        value="bndtools.perspective">
+      <description>Set Perspective</description>
+    </setupTask>
+    <setupTask
+        xsi:type="setup:EclipseIniTask"
+        option="-Xmx"
+        value="4G"
+        vm="true"/>
+  </setupTask>
+  <setupTask
+      xsi:type="setup:CompoundTask"
+      filter="(use.data.folder=true)"
+      name="Eclipse.ini Workspace">
+    <setupTask
+        xsi:type="setup:EclipseIniTask"
+        option="-data"
+        value="./../${workspace.name}">
+      <description>Set workspace path</description>
+    </setupTask>
+  </setupTask>
+  <setupTask
+      xsi:type="setup:ResourceCopyTask"
+      filter="(osgi.os=linux)"
+      sourceURL="https://raw.githubusercontent.com/eclipse-fennec/fennec.bnd.libraries/oomph/eclipse.oomph/eclipse.png"
+      targetURL="file://${installation.location}/eclipse/eclipse.png"/>
+  <setupTask
+      xsi:type="setup:ResourceCreationTask"
+      filter="(osgi.os=linux)"
+      targetURL="file://${user.home}/.local/share/applications/${installation.name}.desktop">
+    <content>
+      [Desktop Entry]
+      Encoding=UTF-8
+      Version=1.0
+      Type=Application
+      Name=${installation.name}
+      Comment=${scope.product.version.label}
+      Terminal=false
+      Icon=${installation.location}/eclipse/icon.xpm
+      Path=${installation.location}/eclipse
+      Exec=${installation.location}/eclipse/eclipse -data ./../${workspace.name} -clean
+      Categories=Application;Development;IDE;
+    </content>
+  </setupTask>
+  <setupTask
+      xsi:type="setup:CompoundTask"
+      name="Preferences">
+    <setupTask
+        xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.core.resources/encoding"
+        value="UTF-8"/>
+    <setupTask
+        xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.jdt.ui/org.eclipse.jdt.ui.typefilter.enabled"
+        value="java.awt.*;"/>
+    <setupTask
+        xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.ui.editors/lineNumberRuler"
+        value="true"/>
+    <setupTask
+        xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.ui.console/Console.highWaterMark"
+        value="500000">
+      <description>Console buffer size (high water mark)</description>
+    </setupTask>
+    <setupTask
+        xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.ui.console/Console.lowWaterMark"
+        value="450000">
+      <description>Console buffer size (low water mark)</description>
+    </setupTask>
+    <setupTask
+        xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.egit.core/core_defaultRepositoryDir"
+        value="${git.repo.dir}">
+      <description>Default folder for cloning Git repositories (core)</description>
+    </setupTask>
+    <setupTask
+        xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.egit.ui/default_repository_dir"
+        value="${git.repo.dir}">
+      <description>Default folder for cloning Git repositories</description>
+    </setupTask>
+    <setupTask
+        xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.egit.ui/user_name"
+        value="${git.user.name}">
+      <description>Git user name for commits</description>
+    </setupTask>
+    <setupTask
+        xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.egit.ui/user_email"
+        value="${git.user.email}">
+      <description>Git user email for commits</description>
+    </setupTask>
+    <setupTask
+        xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.egit.ui/commit_dialog_signed_off_by"
+        value="true"/>
+    <setupTask
+        xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.ui/SHOW_TEXT_ON_PERSPECTIVE_BAR"
+        value="false"/>
+    <setupTask
+        xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.ui/defaultPerspectiveId"
+        value="bndtools.perspective"/>
+    <!-- Fennec / DIM workspace templates use the bndtools FRAGMENT mechanism
+         (-workspace-templates / index.bnd). bndtools has no preference to pre-seed additional
+         fragment indexes (the FragmentTemplateEngine default index is hard-coded to
+         bndtools/workspace-templates). The Fennec fragment index is therefore added in the
+         New Bnd Workspace wizard via the '+' button using this raw URL:
+           https://raw.githubusercontent.com/eclipse-fennec/fennec.bnd.libraries/oomph/index.bnd
+         (or, longer term, by submitting the fragment to the bndtools/workspace-templates master
+         index so it appears by default). The legacy templateRepoUriList preference is NOT used. -->
+    <!-- Fennec / DIM EPL-2.0 license header + Javadoc code templates -->
+    <setupTask
+        xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.jdt.ui/org.eclipse.jdt.ui.text.custom_code_templates"
+        value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?>&lt;templates>&lt;template autoinsert=&quot;false&quot; context=&quot;gettercomment_context&quot; deleted=&quot;false&quot; description=&quot;Comment for getter method&quot; enabled=&quot;true&quot; id=&quot;org.eclipse.jdt.ui.text.codetemplates.gettercomment&quot; name=&quot;gettercomment&quot;>/**&#xA; * Returns the $${bare_field_name}.&#xA; * @return the $${bare_field_name}&#xA; */&lt;/template>&lt;template autoinsert=&quot;true&quot; context=&quot;settercomment_context&quot; deleted=&quot;false&quot; description=&quot;Comment for setter method&quot; enabled=&quot;true&quot; id=&quot;org.eclipse.jdt.ui.text.codetemplates.settercomment&quot; name=&quot;settercomment&quot;>/**&#xA; * Sets the $${bare_field_name}.&#xA; * @param $${param} the $${bare_field_name} to set&#xA; */&lt;/template>&lt;template autoinsert=&quot;false&quot; context=&quot;constructorcomment_context&quot; deleted=&quot;false&quot; description=&quot;Comment for created constructors&quot; enabled=&quot;true&quot; id=&quot;org.eclipse.jdt.ui.text.codetemplates.constructorcomment&quot; name=&quot;constructorcomment&quot;>/**&#xA; * Creates a new instance.&#xA; * $${tags}&#xA; */&lt;/template>&lt;template autoinsert=&quot;false&quot; context=&quot;filecomment_context&quot; deleted=&quot;false&quot; description=&quot;Comment for created Java files&quot; enabled=&quot;true&quot; id=&quot;org.eclipse.jdt.ui.text.codetemplates.filecomment&quot; name=&quot;filecomment&quot;>/********************************************************************&#xA; * Copyright (c) $${year} Contributors to the Eclipse Foundation.&#xA; *&#xA; * This program and the accompanying materials are made&#xA; * available under the terms of the Eclipse Public License 2.0&#xA; * which is available at https://www.eclipse.org/legal/epl-2.0/&#xA; *&#xA; * SPDX-License-Identifier: EPL-2.0&#xA; *&#xA; * Contributors:&#xA; *   Data In Motion Consulting - initial implementation&#xA; ********************************************************************/&lt;/template>&lt;template autoinsert=&quot;true&quot; context=&quot;typecomment_context&quot; deleted=&quot;false&quot; description=&quot;Comment for created types&quot; enabled=&quot;true&quot; id=&quot;org.eclipse.jdt.ui.text.codetemplates.typecomment&quot; name=&quot;typecomment&quot;>/**&#xA; * $${tags}&#xA; * @author $${user}&#xA; * @since $${date}&#xA; */&lt;/template>&lt;template autoinsert=&quot;true&quot; context=&quot;fieldcomment_context&quot; deleted=&quot;false&quot; description=&quot;Comment for fields&quot; enabled=&quot;true&quot; id=&quot;org.eclipse.jdt.ui.text.codetemplates.fieldcomment&quot; name=&quot;fieldcomment&quot;>/** $${field} */&lt;/template>&lt;template autoinsert=&quot;false&quot; context=&quot;overridecomment_context&quot; deleted=&quot;false&quot; description=&quot;Comment for overriding methods&quot; enabled=&quot;true&quot; id=&quot;org.eclipse.jdt.ui.text.codetemplates.overridecomment&quot; name=&quot;overridecomment&quot;>/* &#xA; * (non-Javadoc)&#xA; * $${see_to_overridden}&#xA; */&lt;/template>&lt;/templates>">
+      <description>Eclipse Fennec / DIM Code Templates (EPL-2.0 header)</description>
+    </setupTask>
+    <setupTask
+        xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.jdt.ui/org.eclipse.jdt.ui.javadoc"
+        value="true">
+      <description>Auto generate comments for new files and methods</description>
+    </setupTask>
+    <setupTask
+        xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.jdt.core/org.eclipse.jdt.core.compiler.codegen.inlineJsrBytecode"
+        value="enabled"/>
+    <setupTask
+        xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.jdt.core/org.eclipse.jdt.core.compiler.codegen.targetPlatform"
+        value="21"/>
+    <setupTask
+        xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.jdt.core/org.eclipse.jdt.core.compiler.compliance"
+        value="21"/>
+    <setupTask
+        xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.jdt.core/org.eclipse.jdt.core.compiler.source"
+        value="21"/>
+    <description>Eclipse Fennec / DIM bndtools Preferences</description>
+  </setupTask>
+  <!-- Base P2 Task with common requirements and repositories -->
+  <setupTask
+      xsi:type="setup.p2:P2Task"
+      id="fennec.base.p2"
+      label="Eclipse Fennec / DIM IDE Base Features"
+      licenseConfirmationDisabled="true">
+    <!-- Eclipse Platform / JDT (no PDE - we only use bndtools) -->
+    <requirement name="epp.package.modeling"/>
+    <requirement name="org.eclipse.platform.feature.group"/>
+    <requirement name="org.eclipse.rcp.feature.group"/>
+    <requirement name="org.eclipse.sdk.feature.group"/>
+    <requirement name="org.eclipse.jdt.feature.group"/>
+    <!-- Eclipse Tools -->
+    <requirement name="org.eclipse.e4.core.tools.feature.feature.group"/>
+    <requirement name="org.eclipse.egit.feature.group"/>
+    <requirement name="org.eclipse.m2e.feature.feature.group"/>
+    <requirement name="org.eclipse.oomph.setup.feature.group"/>
+    <!-- EMF + Xcore -->
+    <requirement name="org.eclipse.emf.sdk.feature.group"/>
+    <requirement name="org.eclipse.emf.ecore.xcore.sdk.feature.group"/>
+    <requirement name="org.eclipse.emf.compare.source.feature.group"/>
+    <requirement name="org.eclipse.emf.compare.diagram.sirius.source.feature.group"/>
+    <requirement name="org.eclipse.emf.compare.egit.feature.group"/>
+    <requirement name="org.eclipse.emf.compare.ide.ui.source.feature.group"/>
+    <requirement name="org.eclipse.emf.ecoretools.design.feature.group"/>
+    <requirement name="org.eclipse.emf.parsley.sdk.feature.group"/>
+    <requirement name="org.eclipse.emf.transaction.sdk.feature.group"/>
+    <requirement name="org.eclipse.emf.validation.sdk.feature.group"/>
+    <!-- Modeling: GEF/GMF, OCL, UML, QVT, Acceleo, XSD -->
+    <requirement name="org.eclipse.gef.sdk.feature.group"/>
+    <requirement name="org.eclipse.gmf.runtime.sdk.feature.group"/>
+    <requirement name="org.eclipse.ocl.all.sdk.feature.group"/>
+    <requirement name="org.eclipse.ocl.examples.feature.group"/>
+    <requirement name="org.eclipse.uml2.sdk.feature.group"/>
+    <requirement name="org.eclipse.xsd.sdk.feature.group"/>
+    <requirement name="org.eclipse.m2m.qvt.oml.sdk.feature.group"/>
+    <requirement name="org.eclipse.acceleo.feature.group"/>
+    <!-- Third-party: PlantUML + JSON editor -->
+    <requirement name="jsonedit-feature.feature.group"/>
+    <requirement name="net.sourceforge.plantuml.ecore.feature.feature.group"/>
+    <requirement name="net.sourceforge.plantuml.feature.feature.group"/>
+    <requirement name="net.sourceforge.plantuml.lib.feature.feature.group"/>
+    <!-- Bndtools (selectable via the bndtools-release variable; default 7.3.0) -->
+    <requirement name="bndtools.main.feature.feature.group"/>
+    <requirement name="bndtools.m2e.feature.feature.group"/>
+    <!-- Common repositories -->
+    <repository url="${bndtools-release}"/>
+    <repository url="https://boothen.github.io/Json-Eclipse-Plugin/"/>
+    <repository url="https://hallvard.github.io/plantuml/"/>
+    <description>Common features for all Eclipse Fennec / DIM IDE versions</description>
+  </setupTask>
+  <!-- Version-specific Eclipse release repositories (minimum train: 2025-06, Java 21) -->
+  <version name="fennec-2026-06"
+      label="Eclipse Fennec / DIM 2026-06"
+      requiredJavaVersion="21">
+    <setupTask
+        xsi:type="setup.p2:P2Task"
+        label="Eclipse 2026-06 Release Repository">
+      <repository url="https://download.eclipse.org/releases/2026-06"/>
+    </setupTask>
+    <description>Eclipse Fennec / DIM IDE setup for Eclipse 2026-06</description>
+  </version>
+  <version name="fennec-2026-03"
+      label="Eclipse Fennec / DIM 2026-03"
+      requiredJavaVersion="21">
+    <setupTask
+        xsi:type="setup.p2:P2Task"
+        label="Eclipse 2026-03 Release Repository">
+      <repository url="https://download.eclipse.org/releases/2026-03"/>
+    </setupTask>
+    <description>Eclipse Fennec / DIM IDE setup for Eclipse 2026-03</description>
+  </version>
+  <version name="fennec-2025-12"
+      label="Eclipse Fennec / DIM 2025-12"
+      requiredJavaVersion="21">
+    <setupTask
+        xsi:type="setup.p2:P2Task"
+        label="Eclipse 2025-12 Release Repository">
+      <repository url="https://download.eclipse.org/releases/2025-12"/>
+    </setupTask>
+    <description>Eclipse Fennec / DIM IDE setup for Eclipse 2025-12</description>
+  </version>
+  <version name="fennec-2025-09"
+      label="Eclipse Fennec / DIM 2025-09"
+      requiredJavaVersion="21">
+    <setupTask
+        xsi:type="setup.p2:P2Task"
+        label="Eclipse 2025-09 Release Repository">
+      <repository url="https://download.eclipse.org/releases/2025-09"/>
+    </setupTask>
+    <description>Eclipse Fennec / DIM IDE setup for Eclipse 2025-09</description>
+  </version>
+  <version name="fennec-2025-06"
+      label="Eclipse Fennec / DIM 2025-06"
+      requiredJavaVersion="21">
+    <setupTask
+        xsi:type="setup.p2:P2Task"
+        label="Eclipse 2025-06 Release Repository">
+      <repository url="https://download.eclipse.org/releases/2025-06"/>
+    </setupTask>
+    <description>Eclipse Fennec / DIM IDE setup for Eclipse 2025-06</description>
+  </version>
+  <description>Eclipse Fennec / DIM IDE Product definition</description>
+</setup:Product>

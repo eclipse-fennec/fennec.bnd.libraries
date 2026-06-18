@@ -1,0 +1,17 @@
+# Eclipse Fennec workspace template fragments index.
+#
+# Register this index in bndtools (New Bnd Workspace wizard → '+' → add this file's raw
+# GitHub URL) or via the `bndtools.core/templateRepoUriList` preference. Fragment ids
+# resolve to folders inside this repository:
+#   id ::= organization '/' repository [ '/' path ] [ '#' git-ref ]
+#
+# Raw URL (snapshot):
+#   https://raw.githubusercontent.com/eclipse-fennec/fennec.bnd.libraries/oomph/index.bnd
+# NOTE: refs point at the temporary `oomph` test branch (not snapshot/main) until the
+# bnd release rebuild is done. Switch to snapshot/main when promoting.
+
+-workspace-templates: \
+	eclipse-fennec/fennec.bnd.libraries/fragments/gradle#oomph; \
+		name=fennec-gradle; \
+		description="Eclipse Fennec Gradle workspace setup (Sonar, Jacoco, GitHub Actions)"; \
+		tag="fennec,gradle"
