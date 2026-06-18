@@ -13,5 +13,5 @@
 -workspace-templates: \
 	eclipse-fennec/fennec.bnd.libraries/fragments/gradle#oomph; \
 		name=fennec-gradle; \
-		description="Eclipse Fennec Gradle workspace setup (Sonar, Jacoco, GitHub Actions)"; \
+		description="Eclipse Fennec Gradle workspace (Sonar, Jacoco, GitHub Actions). After creating the workspace set github_org, github_repository and maven_group_id in gradle.properties (single source for Gradle and bnd) - see cnf/SETUP.MD."; \
 		tag="fennec,gradle"

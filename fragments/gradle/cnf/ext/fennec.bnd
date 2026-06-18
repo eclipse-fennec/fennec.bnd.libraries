@@ -3,8 +3,14 @@
 # Layered on top of the bndtools `workspace-minimal` base template, which already
 # provides the Local + Release LocalIndexedRepos and `-releaserepo: Release`.
 # We therefore only ADD what is missing and deliberately do NOT redefine the Local
-# or Release repositories (that would collide on the repo name) and do NOT override
-# `-releaserepo` (Maven Central release is driven by GitHub Actions, not the workspace).
+# or Release repositories and do NOT override `-releaserepo` (Maven Central release
+# is driven by GitHub Actions, not the workspace).
+
+# Single source of truth for the project coordinates: gradle.properties at the
+# workspace root (also read natively by Gradle). bnd imports it so the same values
+# drive both Gradle and bnd. Set github_org / github_repository / maven_group_id
+# there (see cnf/SETUP.MD).
+-include: ${workspace}/gradle.properties
 
 # Enable the Fennec library setups (resolved from Maven Central via central.mvn).
 -library: \
@@ -29,8 +35,7 @@ javac.target: 21
 		poll.time=-1; \
 		name="Central"
 
-# Project group id / GitHub coordinates — adjust per project.
-# For Eclipse Fennec the groupid must start with org.eclipse.fennec
--groupid: org.eclipse.fennec.example
-github-orga: eclipse-fennec
-github-project: example
+# Project coordinates, imported from gradle.properties (single source).
+github-orga:    ${github_org}
+github-project: ${github_repository}
+-groupid:       ${maven_group_id}

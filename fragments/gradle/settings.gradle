@@ -19,5 +19,5 @@ plugins {
   id 'biz.aQute.bnd.workspace'
 }
 
-// Adjust to your project name
-rootProject.name = 'fennec-workspace'
+// Project name comes from gradle.properties (single source of truth)
+rootProject.name = github_repository

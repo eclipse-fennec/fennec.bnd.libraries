@@ -45,14 +45,14 @@ subprojects {
 
 }
 
-// Sonar setup — set projectName/projectKey/organization for your project
+// Sonar setup — values come from gradle.properties (github_org, github_repository)
 sonarqube {
   properties {
-    property "sonar.projectName", rootProject.name
-    property "sonar.projectKey", "eclipse-fennec-${rootProject.name}"
-    property "sonar.organization", "eclipse-fennec"
+    property "sonar.projectName", github_repository
+    property "sonar.projectKey", github_org + "-" + github_repository
+    property "sonar.organization", github_org
     property "sonar.host.url", "https://sonarcloud.io"
-    property "sonar.coverage.jacoco.xmlReportPaths", "${rootDir}/build/reports/jacoco/codeCoverageReport/codeCoverageReport.xml"
+    property "sonar.coverage.jacoco.xmlReportPaths", rootDir.toString() + "/build/reports/jacoco/codeCoverageReport/codeCoverageReport.xml"
   }
 }
 
