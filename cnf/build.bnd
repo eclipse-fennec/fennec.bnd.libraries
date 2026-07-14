@@ -2,9 +2,10 @@
 -groupid: org.eclipse.fennec.bnd
 
 # Set projects current version
-base-version: 0.0.9
+base-version: 0.0.10
 
-# Set projects Github repository name
+# Set projects Github organisation and repository name
+github-orga: eclipse-fennec
 github-project: fennec.bnd.libraries
 
 -require-bnd: "(version>=7.2.1)"
@@ -44,6 +45,19 @@ maven-central: true
 	"\\[Include Override\\]:.*-pom.*";is:=ignore
 
 -releaserepo: Release
+
+# Baselining against the last release OBR (release-obr branch).
+# Enable after the first release has published the OBR, then bump
+# base-version after every release.
+#-plugin.baseline: \
+#	aQute.bnd.repository.osgi.OSGiRepository;\
+#		locations	=https://raw.githubusercontent.com/${github-orga}/${github-project}/release-obr/index.xml;\
+#		max.stale	=-1;\
+#		poll.time	=-1;\
+#		name		=Baseline
+#-baselinerepo: Baseline
+#-baseline: *
+#-diffpackages: *;threshold=MINOR
 
 -include: \
 	${if;${env;DO_RELEASE;false};\

@@ -11,8 +11,12 @@ sonatype_snapshots:     https://production.portal.central.sonatype.com/repositor
 		sonatypeMode    = ${if;${isempty;${-snapshot}};autopublish;none};\
 		name			= 'Sonatype'
 		
-# Set release repository
--releaserepo: Sonatype
+# Set release repository. For actual releases (DO_RELEASE=true) the same run
+# additionally releases into the local 'Release' OBR (cnf/release), so the
+# identical bundles land on Maven Central and in the OBR. Kept conditional so
+# snapshot builds (which also have GPG set) don't populate the OBR and the
+# repository list never contains duplicates.
+-releaserepo: Sonatype${if;${env;DO_RELEASE;false};,Release}
 
 -connection-settings: \
 	${.}/sonatype-settings.xml

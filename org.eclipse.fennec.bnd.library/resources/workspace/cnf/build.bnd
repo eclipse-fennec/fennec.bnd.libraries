@@ -8,8 +8,8 @@
 	fennecJacoco
 
 # Needed because we enabled library 'fennec'
-# Activate baselining
-#fennecBaselining: true
+# Activate baselining against the release OBR (release-obr branch)
+#fennec-baselining: true
 github-project: !#project-symbolic-name#!
 github-orga: !#orga-symbolic-name#!
 

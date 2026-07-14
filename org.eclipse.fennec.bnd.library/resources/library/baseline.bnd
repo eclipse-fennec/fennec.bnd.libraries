@@ -1,8 +1,22 @@
-#-plugin.baseline:\
-#	aQute.bnd.repository.osgi.OSGiRepository;\
-#	locations=https://devel.data-in-motion.biz/repository/gecko/release/${github-project}/index.xml;\
-#	max.stale=-1;\
-#	name=Baseline;\
-#	cache=${build}/cache/${github-project}
-#		
-#-baselinerepo: Baseline
+# Baselining against the last release OBR, published by the release build and
+# pushed to the 'release-obr' branch of the GitHub repository.
+# This file is only included when 'fennec-baselining: true' is set in the
+# workspace build.bnd. The repository location can be overridden by setting
+# 'fennec-baseline-url' there as well ('${def}' is used so the workspace value
+# always wins over this library).
+-plugin.baseline: \
+	aQute.bnd.repository.osgi.OSGiRepository;\
+		locations	=${def;fennec-baseline-url;https://raw.githubusercontent.com/${github-orga}/${github-project}/release-obr/index.xml};\
+		max.stale	=-1;\
+		poll.time	=-1;\
+		name		=Baseline
+
+-baselinerepo: Baseline
+-baseline: *
+
+# Only report MINOR and MAJOR package changes. Generated version constants
+# (derived from base-version) are inlined into classes and @Capability
+# annotations, so their bytecode differs from the released baseline in every
+# development cycle by design - MICRO-level noise. Real API additions (MINOR)
+# and breakages (MAJOR) are still enforced.
+-diffpackages: *;threshold=MINOR
