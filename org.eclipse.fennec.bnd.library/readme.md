@@ -61,11 +61,17 @@ This setup also contains a configuration for automatically releasing snapshot to
 
 This action can only be triggered from our internal Jenkins instance.
 
-### Baselining 
+### Release OBR
 
-Baselining is pre-configured for the Maven Central release repository. Baselining can then be activated for each project, if wanted using `-baseline: *`.
+The library defines the `Release` repository as a `LocalIndexedRepo` in `cnf/release`. A release run (`DO_RELEASE=true`) publishes the exact bundles that go to Maven Central into this OBR as well — in the same run, so the checksums match. The release workflow can then push the content of `cnf/release` to a `release-obr` branch, where the index is served at `https://raw.githubusercontent.com/<orga>/<repo>/release-obr/index.xml`.
 
-There is a variable that is preset to `fennecBaselining: false`.
+### Baselining
 
-If you set this variable to false in your *build.bnd*, baselining will be deactivated.
+Baselining against the last release OBR is pre-configured but **off by default**. Activate it in your *build.bnd*:
+
+**fennec-baselining: true**
+
+This baselines all bundles (`-baseline: *`) against the `release-obr` branch of your repository (using `github-orga` and `github-project`). Package changes are only reported at MINOR/MAJOR level (`-diffpackages: *;threshold=MINOR`), so inlined generated version constants don't cause MICRO-level noise. Remember to bump `base-version` after each release.
+
+The repository location can be overridden with **fennec-baseline-url** in your *build.bnd*.
 
