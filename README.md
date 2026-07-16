@@ -2,6 +2,8 @@
 
 # Fennec Bnd Libraries
 
+📖 **Documentation:** [https://eclipse-fennec.github.io/fennec.bnd.libraries/](https://eclipse-fennec.github.io/fennec.bnd.libraries/)
+
 This project contains **Bndtools Library** definitions.
 
 You can take a look here about bnd libraries:
