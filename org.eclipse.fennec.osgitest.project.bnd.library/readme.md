@@ -12,13 +12,13 @@ You simple have to include the Maven Dependency in your setup:
 ```
 <dependency>
 	<groupId>org.eclipse.fennec.bnd</groupId>
-	<artifactId>org.eclipse.fennec.osgittest.project.bnd.library</artifactId>
+	<artifactId>org.eclipse.fennec.osgitest.project.bnd.library</artifactId>
 	<version>0.0.x</version>
 </dependency>
 
-org.eclipse.fennec.bnd:org.eclipse.fennec.osgittest.project.bnd.library:0.0.x
+org.eclipse.fennec.bnd:org.eclipse.fennec.osgitest.project.bnd.library:0.0.x
 ```
-Please note: If you use the library instruction **-library: fennecTest** in your workspace (*build.bnd*), you will automatically have the current dependencies for JUnit 5 and OSGi Test. This library comes a companion to **org.eclipse.fennec.osgittest.bnd.library**.
+Please note: If you use the library instruction **-library: fennecTest** in your workspace (*build.bnd*), you will automatically have the current dependencies for JUnit 5 and OSGi Test. This library comes a companion to **org.eclipse.fennec.osgitest.bnd.library**.
 
 ## Library enableOSGi-Test
 
