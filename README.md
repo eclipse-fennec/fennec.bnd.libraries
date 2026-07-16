@@ -2,7 +2,7 @@
 
 # Fennec Bnd Libraries
 
-This project contains **Bndtools Library** definitions..
+This project contains **Bndtools Library** definitions.
 
 You can take a look here about bnd libraries:
 
@@ -33,7 +33,7 @@ This project contains:
 
 ## org.eclipse.fennec.osgitest.project.bnd.library
 
-Please also refer to [OSGi-Test Integration Test Readme](org.elcipse.fennec.osgitest.project.bnd.library/readme.md).
+Please also refer to [OSGi-Test Integration Test Readme](org.eclipse.fennec.osgitest.project.bnd.library/readme.md).
 
 This project contains:
 
