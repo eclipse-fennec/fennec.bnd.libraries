@@ -54,6 +54,7 @@ maven-central: true
 #		locations	=https://raw.githubusercontent.com/${github-orga}/${github-project}/release-obr/index.xml;\
 #		max.stale	=-1;\
 #		poll.time	=-1;\
+#		tags		=baseline;\
 #		name		=Baseline
 #-baselinerepo: Baseline
 #-baseline: *
