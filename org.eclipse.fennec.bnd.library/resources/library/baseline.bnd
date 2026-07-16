@@ -4,11 +4,15 @@
 # workspace build.bnd. The repository location can be overridden by setting
 # 'fennec-baseline-url' there as well ('${def}' is used so the workspace value
 # always wins over this library).
+# The 'baseline' tag (i.e. the absence of the 'resolve' tag) keeps this
+# repository out of the default resolve process, so released versions are
+# never pulled in as dependencies.
 -plugin.baseline: \
 	aQute.bnd.repository.osgi.OSGiRepository;\
 		locations	=${def;fennec-baseline-url;https://raw.githubusercontent.com/${github-orga}/${github-project}/release-obr/index.xml};\
 		max.stale	=-1;\
 		poll.time	=-1;\
+		tags		=baseline;\
 		name		=Baseline
 
 -baselinerepo: Baseline
