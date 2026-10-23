@@ -12,11 +12,11 @@ You simple have to include the Maven Dependency in your setup:
 ```
 <dependency>
 	<groupId>org.eclipse.fennec.bnd</groupId>
-	<artifactId>org.eclipse.fennec.osgittest.bnd.library</artifactId>
+	<artifactId>org.eclipse.fennec.osgitest.bnd.library</artifactId>
 	<version>0.0.x</version>
 </dependency>
 
-org.eclipse.fennec.bnd:org.eclipse.fennec.osgittest.bnd.library:0.0.x
+org.eclipse.fennec.bnd:org.eclipse.fennec.osgitest.bnd.library:0.0.x
 ```
 ## Library fennecTest
 
@@ -32,7 +32,7 @@ A new repository will appear, that includes the JUnit5 Jupiter and OSGi-Test dep
 
 For ordinary unit testing in your project. You do not to do anything. JUnit5 testing is already configured, because the *-testpath* is configured by the library.
 
-This library brings also the dependency *org.eclipse.fennec.osgittest.project.bnd.library*. This is also a library on top and contains project templates for JUnit5 / OSGi-Test enabled integration test projects.
+This library brings also the dependency *org.eclipse.fennec.osgitest.project.bnd.library*. This is also a library on top and contains project templates for JUnit5 / OSGi-Test enabled integration test projects.
 
 ## Gradle OSGi-Test Workspace Template
 

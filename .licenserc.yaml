@@ -71,5 +71,6 @@ header:
     - 'settings.gradle'
     - '**/resources/**'
     - '**/git/**'
+    - 'docs-site/**'
 
   comment: always
